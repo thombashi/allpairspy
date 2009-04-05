@@ -2,11 +2,11 @@
 AllPairs test combinations generator 
 ====================================
 
-AllPairs is an open source test combinations generator from 
-MetaCommunications, written in Python. It allows one to create a set
-of tests using "pairwise combinations" method, reducing a number of 
-combinations of variables into a lesser set that covers most 
-situations.
+AllPairs is an open source test combinations generator written in 
+Python, developed and maintained by MetaCommunications Engineering.
+The generator allows one to create a set of tests using "pairwise 
+combinations" method, reducing a number of combinations of variables
+into a lesser set that covers most situations.
 
 For more info on pairwise testing see http://www.pairwise.org.
 
