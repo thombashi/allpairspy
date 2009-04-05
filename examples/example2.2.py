@@ -25,21 +25,11 @@ parameters = [ ( "brand"
                , [ 6, 10, 15, 30, 60 ] )
              ]
 
-             
-class dictify_params:
-    def __init__( self, names ):
-        self.names = names
-    
-    def __call__(self, func):
-        @functools.wraps(func)
-        def dictify( row ):
-            return func( dict(zip(self.names, row)) )
-        return dictify
-
-
                  
-@dictify_params( names = [x[0] for x in parameters] )             
-def is_valid_combination( dictionary ):
+def is_valid_combination( values, names ):
+
+    dictionary = dict( zip( names, values ) )
+
     """
     Should return True if combination is valid and False otherwise.
     
@@ -62,7 +52,10 @@ def is_valid_combination( dictionary ):
     return True
           
              
-pairwise = all_pairs( [x[1] for x in parameters], filter_func = is_valid_combination )
+pairwise = all_pairs(
+      [ x[1] for x in parameters ]
+    , filter_func = lambda values: is_valid_combination( values, [ x[0] for x in parameters ] )
+    )
 
 for i, v in enumerate(pairwise):
     print "%i:\t%s" % (i, str(v))
