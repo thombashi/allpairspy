@@ -38,3 +38,5 @@ def permutations2(L):
         for p in permutations(L):
             for i in range(len(p)+1):
                 yield p[:i] + a + p[i:]
+# encoding: utf-8
+

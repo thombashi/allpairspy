@@ -136,3 +136,5 @@ class all_pairs2:
         return self.__pairs
 
 __export__ = [ all_pairs2, get_max_comb_number ]
+# encoding: utf-8
+

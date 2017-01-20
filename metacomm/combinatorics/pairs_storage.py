@@ -54,3 +54,5 @@ class pairs_storage:
     def count_new_combs( self, seq ):
         s = set([key(z) for z in xuniqueCombinations( seq, self.__n)]) - self.__combs_arr[-1]
         return len(s)
+# encoding: utf-8
+
