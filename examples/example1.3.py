@@ -31,4 +31,4 @@ for i, v in enumerate(pairwise):
     print "%i:\t%s" % (i, str(v))
 
 
-    
+    #!/usr/bin/env python

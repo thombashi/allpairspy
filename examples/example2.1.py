@@ -51,4 +51,4 @@ for i, v in enumerate(pairwise):
 
 
 
-        
+        #!/usr/bin/env python

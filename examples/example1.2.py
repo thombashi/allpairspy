@@ -23,4 +23,4 @@ print "TRIPLEWISE:"
 for i, v in enumerate(triplewise):
     print "%i:\t%s" % (i, str(v))
     
-    
+    #!/usr/bin/env python

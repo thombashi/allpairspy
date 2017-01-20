@@ -49,3 +49,4 @@ print_result(( (3, 100), ))
 print_result(( (10, 20), ))
 print_result(( (10, 10), ))
 
+#!/usr/bin/env python
