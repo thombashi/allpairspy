@@ -1,10 +1,20 @@
 # encoding: utf-8
 
-import pairs_storage
-from combinatorics import xuniqueCombinations
+from functools import cmp_to_key
+
+from six.moves import (
+    range,
+    reduce,
+)
+
+from .pairs_storage import (
+    pairs_storage,
+    key,
+)
+from .combinatorics import xuniqueCombinations
 
 
-class item:
+class item(object):
 
     def __init__(self, id, value):
         self.id = id
@@ -23,7 +33,14 @@ def get_max_comb_number(arr, n):
     return total
 
 
-class all_pairs2:
+def cmp(lhs, rhs):
+    if lhs.weights == rhs.weights:
+        return 0
+
+    return -1 if lhs.weights < rhs.weights else 1
+
+
+class all_pairs2(object):
 
     def __iter__(self):
         return self
@@ -45,7 +62,7 @@ class all_pairs2:
 
         self.__filter_func = filter_func
         self.__n = n
-        self.__pairs = pairs_storage.pairs_storage(n)
+        self.__pairs = pairs_storage(n)
         self.__max_unique_pairs_expected = get_max_comb_number(options, n)
         self.__working_arr = []
 
@@ -72,6 +89,9 @@ class all_pairs2:
             self.__pairs.add_sequence(tested)
 
     def next(self):
+        return self.__next__()
+
+    def __next__(self):
         assert(len(self.__pairs) <= self.__max_unique_pairs_expected)
         p = self.__pairs
         if len(self.__pairs) == self.__max_unique_pairs_expected:
@@ -136,8 +156,7 @@ class all_pairs2:
                 # appended to array
                 new_combs.append(
                     set([
-                        pairs_storage.key(z)
-                        for z in xuniqueCombinations(
+                        key(z) for z in xuniqueCombinations(
                             chosen_values_arr + [item], i + 1)
                     ]) - self.__pairs.get_combs()[i])
 
@@ -155,7 +174,7 @@ class all_pairs2:
             # connections; somehow it works out better ;)
             item.weights += [-len(data_node.in_)]
 
-        self.__working_arr[num].sort(lambda a, b: cmp(a.weights, b.weights))
+        self.__working_arr[num].sort(key=cmp_to_key(cmp))
 
     # statistics, internal stuff
     def get_pairs_found(self):

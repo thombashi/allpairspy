@@ -1,9 +1,11 @@
 # encoding: utf-8
 
-from combinatorics import xuniqueCombinations
+from six.moves import range
+
+from .combinatorics import xuniqueCombinations
 
 
-class node:
+class node(object):
 
     def __init__(self, id):
         self.id = id
@@ -19,7 +21,7 @@ def key(items):
     return "->".join([x.id for x in items])
 
 
-class pairs_storage:
+class pairs_storage(object):
 
     def __init__(self, n):
         self.__n = n
