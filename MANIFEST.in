@@ -1,2 +1,10 @@
-include MANIFEST.in *.txt
-recursive-include examples *
+include LICENSE
+include README.rst
+include setup.cfg
+include tox.ini
+
+recursive-include requirements *
+recursive-include test *
+
+global-exclude __pycache__/*
+global-exclude *.pyc
