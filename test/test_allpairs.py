@@ -6,7 +6,7 @@
 
 import pytest
 
-from metacomm import AllPairs
+from allpairspy import AllPairs
 
 
 class Test_pairewise(object):
