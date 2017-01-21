@@ -1,7 +1,9 @@
 #!/usr/bin/env python
+# encoding: utf-8
 
-import metacomm.combinatorics.all_pairs2
-all_pairs = metacomm.combinatorics.all_pairs2.all_pairs2
+from __future__ import print_function
+
+from allpairspy import AllPairs
 
 """
 Demo of the basic functionality - just getting pairwise combinations
@@ -25,8 +27,6 @@ tested = [
     ["Brand Y", "NT", "Internal", "Part-Time", 10],
 ]
 
-pairwise = all_pairs(parameters, previously_tested=tested)
-
-print "PAIRWISE:"
-for i, v in enumerate(pairwise):
-    print "%i:\t%s" % (i, str(v))
+print("PAIRWISE:")
+for i, parameter in enumerate(AllPairs(parameters, previously_tested=tested)):
+    print("{:d}:\t{}".format(i, parameter))

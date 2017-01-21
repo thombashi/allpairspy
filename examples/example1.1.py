@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import metacomm.combinatorics.all_pairs2
-all_pairs = metacomm.combinatorics.all_pairs2.all_pairs2
+from __future__ import print_function
+
+from allpairspy import AllPairs
 
 """
 Demo of the basic functionality - just getting pairwise/n-wise combinations
@@ -19,8 +20,6 @@ parameters = [
     [6, 10, 15, 30, 60]
 ]
 
-pairwise = all_pairs(parameters)
-
-print "PAIRWISE:"
-for i, v in enumerate(pairwise):
-    print "%i:\t%s" % (i, str(v))
+print("PAIRWISE:")
+for i, v in enumerate(AllPairs(parameters)):
+    print("{:d}:\t{:s}".format(i, str(v)))

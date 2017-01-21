@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import metacomm.combinatorics.all_pairs2
-all_pairs = metacomm.combinatorics.all_pairs2.all_pairs2
+from __future__ import print_function
+
+from allpairspy import AllPairs
+
 
 """
 Provided to make it easier to compare efficiency with other tools
@@ -37,12 +39,11 @@ def print_result(dimensions):
     header_list = []
     for d in dimensions:
         header_list.append("%i^%i" % d)
-    header = " * ".join(header_list)
 
-    pairwise = all_pairs(get_arrays(dimensions))
+    pairwise = AllPairs(get_arrays(dimensions))
     n = len(list(pairwise))
 
-    print "%s: produces %i rows" % (header, n)
+    print("{:s}: produces {:d} rows".format(" * ".join(header_list), n))
 
 
 print_result(((3, 4), ))

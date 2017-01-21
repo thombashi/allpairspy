@@ -1,22 +1,13 @@
 #!/usr/bin/env python
+# encoding: utf-8
 
-import metacomm.combinatorics.all_pairs2
-all_pairs = metacomm.combinatorics.all_pairs2.all_pairs2
+from __future__ import print_function
+
+from allpairspy import AllPairs
 
 """
 Demo of filtering capabilities
 """
-
-# sample parameters are is taken from
-# http://www.stsc.hill.af.mil/consulting/sw_testing/improvement/cst.html
-
-parameters = [
-    ["Brand X", "Brand Y"],
-    ["98", "NT", "2000", "XP"],
-    ["Internal", "Modem"],
-    ["Salaried", "Hourly", "Part-Time", "Contr."],
-    [6, 10, 15, 30, 60]
-]
 
 
 def is_valid_combination(row):
@@ -44,7 +35,15 @@ def is_valid_combination(row):
     return True
 
 
-pairwise = all_pairs(parameters, filter_func=is_valid_combination)
+# sample parameters are is taken from
+# http://www.stsc.hill.af.mil/consulting/sw_testing/improvement/cst.html
+parameters = [
+    ["Brand X", "Brand Y"],
+    ["98", "NT", "2000", "XP"],
+    ["Internal", "Modem"],
+    ["Salaried", "Hourly", "Part-Time", "Contr."],
+    [6, 10, 15, 30, 60]
+]
 
-for i, v in enumerate(pairwise):
-    print "%i:\t%s" % (i, str(v))
+for i, parameter in enumerate(AllPairs(parameters, filter_func=is_valid_combination)):
+    print("{:d}:\t{}".format(i, parameter))

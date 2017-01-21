@@ -1,26 +1,15 @@
 #!/usr/bin/env python
+# encoding: utf-8
 
+from __future__ import print_function
 import functools
 
-import metacomm.combinatorics.all_pairs2
-all_pairs = metacomm.combinatorics.all_pairs2.all_pairs2
+from allpairspy import AllPairs
 
 """
 Another demo of filtering capabilities.
 Demonstrates how to use named parameters
 """
-
-# sample parameters are is taken from
-# http://www.stsc.hill.af.mil/consulting/sw_testing/improvement/cst.html
-
-
-parameters = [
-    ("brand", ["Brand X", "Brand Y"]),
-    ("os", ["98", "NT", "2000", "XP"]),
-    ("network", ["Internal", "Modem"]),
-    ("employee", ["Salaried", "Hourly", "Part-Time", "Contr."]),
-    ("increment", [6, 10, 15, 30, 60])
-]
 
 
 def is_valid_combination(values, names):
@@ -53,12 +42,21 @@ def is_valid_combination(values, names):
 
     return True
 
+# sample parameters are is taken from
+# http://www.stsc.hill.af.mil/consulting/sw_testing/improvement/cst.html
+parameters = [
+    ("brand", ["Brand X", "Brand Y"]),
+    ("os", ["98", "NT", "2000", "XP"]),
+    ("network", ["Internal", "Modem"]),
+    ("employee", ["Salaried", "Hourly", "Part-Time", "Contr."]),
+    ("increment", [6, 10, 15, 30, 60])
+]
 
-pairwise = all_pairs(
+pairwise = AllPairs(
     [x[1] for x in parameters],
     filter_func=lambda values: is_valid_combination(
         values, [x[0] for x in parameters])
 )
 
-for i, v in enumerate(pairwise):
-    print "%i:\t%s" % (i, str(v))
+for i, parameter in enumerate(pairwise):
+    print("{:d}:\t{}".format(i, parameter))
