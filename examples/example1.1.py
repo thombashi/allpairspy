@@ -11,7 +11,6 @@ Demo of the basic functionality - just getting pairwise/n-wise combinations
 
 # sample parameters are is taken from
 # http://www.stsc.hill.af.mil/consulting/sw_testing/improvement/cst.html
-
 parameters = [
     ["Brand X", "Brand Y"],
     ["98", "NT", "2000", "XP"],
@@ -21,5 +20,5 @@ parameters = [
 ]
 
 print("PAIRWISE:")
-for i, v in enumerate(AllPairs(parameters)):
-    print("{:d}:\t{:s}".format(i, str(v)))
+for i, parameter in enumerate(AllPairs(parameters)):
+    print("{:d}:\t{}".format(i, parameter))
