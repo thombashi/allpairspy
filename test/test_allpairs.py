@@ -4,8 +4,6 @@
 .. codeauthor:: Tsuyoshi Hombashi <gogogo.vm@gmail.com>
 """
 
-from __future__ import print_function
-
 import pytest
 
 import metacomm.combinatorics.all_pairs2

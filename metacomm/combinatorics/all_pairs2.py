@@ -27,7 +27,6 @@ class item(object):
 
 def get_max_comb_number(arr, n):
     items = [len(x) for x in arr]
-    # print items
     f = lambda x, y: x * y
     total = sum([reduce(f, z) for z in xuniqueCombinations(items, n)])
     return total
@@ -67,8 +66,10 @@ class all_pairs2(object):
         self.__working_arr = []
 
         for i in range(len(options)):
-            self.__working_arr.append([item("a%iv%i" % (i, j), value)
-                                       for j, value in enumerate(options[i])])
+            self.__working_arr.append([
+                item("a%iv%i" % (i, j), value)
+                for j, value in enumerate(options[i])
+            ])
 
         for arr in previously_tested:
             if len(arr) == 0:
@@ -76,8 +77,10 @@ class all_pairs2(object):
             elif len(arr) != len(self.__working_arr):
                 raise Exception(
                     "previously tested combination is not complete")
+
             if not self.__filter_func(arr):
                 raise Exception("invalid tested combination is provided")
+
             tested = []
             for i, val in enumerate(arr):
                 idxs = [item(node.id, 0)
@@ -93,7 +96,7 @@ class all_pairs2(object):
 
     def __next__(self):
         assert(len(self.__pairs) <= self.__max_unique_pairs_expected)
-        p = self.__pairs
+
         if len(self.__pairs) == self.__max_unique_pairs_expected:
             # no reasons to search further - all pairs are found
             raise StopIteration
