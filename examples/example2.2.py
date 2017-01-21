@@ -59,4 +59,4 @@ pairwise = AllPairs(
 )
 
 for i, parameter in enumerate(pairwise):
-    print("{:d}:\t{}".format(i, parameter))
+    print("{:2d}: {}".format(i, parameter))

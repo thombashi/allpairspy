@@ -46,4 +46,4 @@ parameters = [
 ]
 
 for i, parameter in enumerate(AllPairs(parameters, filter_func=is_valid_combination)):
-    print("{:d}:\t{}".format(i, parameter))
+    print("{:2d}: {}".format(i, parameter))

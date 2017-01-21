@@ -28,4 +28,4 @@ tested = [
 
 print("PAIRWISE:")
 for i, parameter in enumerate(AllPairs(parameters, previously_tested=tested)):
-    print("{:d}:\t{}".format(i, parameter))
+    print("{:2d}: {}".format(i, parameter))

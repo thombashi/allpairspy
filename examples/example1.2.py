@@ -21,4 +21,4 @@ parameters = [
 
 print("TRIPLEWISE:")
 for i, parameter in enumerate(AllPairs(parameters, n=3)):
-    print("{:d}:\t{}".format(i, parameter))
+    print("{:2d}: {}".format(i, parameter))
