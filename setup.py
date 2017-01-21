@@ -21,7 +21,7 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
 
 setup(
     name='allpairspy',
-    version='2.0.1',
+    version='2.1.0',
     description='Pairwise test combinations generator',
     long_description='''Pairwise (aka "all-pairs") test combinations generator written in
 Python. Allows one to create a set of tests using "pairwise 
@@ -45,6 +45,13 @@ into a lesser set that covers most situations.
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
         'Topic :: Software Development :: Testing',
         'Topic :: Utilities',
     ]
