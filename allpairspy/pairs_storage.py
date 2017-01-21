@@ -11,14 +11,21 @@ class Node(object):
     def id(self):
         return self.__node_id
 
+    @property
+    def counter(self):
+        return self.__counter
+
     def __init__(self, node_id):
         self.__node_id = node_id
-        self.counter = 0
+        self.__counter = 0
         self.in_ = set()
         self.out = set()
 
     def __str__(self):
         return str(self.__dict__)
+
+    def inc_counter(self):
+        self.__counter += 1
 
 
 def key(items):
@@ -30,9 +37,9 @@ class pairs_storage(object):
     def __init__(self, n):
         self.__n = n
         self.__nodes = {}
-        self.__combs_arr = []
-        for _i in range(n):
-            self.__combs_arr.append(set())
+        self.__combs_arr = [
+            set() for _i in range(n)
+        ]
 
     def add(self, comb):
         n = len(comb)
@@ -46,7 +53,7 @@ class pairs_storage(object):
         ids = [x.id for x in comb]
         for i, id in enumerate(ids):
             curr = self.__nodes[id]
-            curr.counter += 1
+            curr.inc_counter()
             curr.in_.update(ids[:i])
             curr.out.update(ids[i + 1:])
 
@@ -63,10 +70,3 @@ class pairs_storage(object):
 
     def __len__(self):
         return len(self.__combs_arr[-1])
-
-    def count_new_combs(self, seq):
-        s = set([
-            key(z) for z in xuniqueCombinations(seq, self.__n)
-        ]) - self.__combs_arr[-1]
-
-        return len(s)

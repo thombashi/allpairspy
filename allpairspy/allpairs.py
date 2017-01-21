@@ -49,9 +49,6 @@ def cmp(lhs, rhs):
 
 class AllPairs(object):
 
-    def __iter__(self):
-        return self
-
     def __init__(
             self, options, filter_func=lambda x: True, previously_tested=[[]],
             n=2):
@@ -102,6 +99,9 @@ class AllPairs(object):
                 tested.append(idxs[0])
             self.__pairs.add_sequence(tested)
 
+    def __iter__(self):
+        return self
+
     def next(self):
         return self.__next__()
 
@@ -139,7 +139,8 @@ class AllPairs(object):
 
             chosen_values_arr[i] = self.__working_arr[i][indexes[i]]
 
-            if self.__filter_func(self.get_values_array(chosen_values_arr[:i + 1])):
+            if self.__filter_func(
+                    self.__get_values_array(chosen_values_arr[:i + 1])):
                 assert(direction > -1)
                 direction = 1
             else:
@@ -156,10 +157,7 @@ class AllPairs(object):
             raise StopIteration
 
         # replace returned array elements with real values and return it
-        return self.get_values_array(chosen_values_arr)
-
-    def get_values_array(self, arr):
-        return [item.value for item in arr]
+        return self.__get_values_array(chosen_values_arr)
 
     def resort_working_array(self, chosen_values_arr, num):
         for item in self.__working_arr[num]:
@@ -191,8 +189,5 @@ class AllPairs(object):
 
         self.__working_arr[num].sort(key=cmp_to_key(cmp))
 
-    # statistics, internal stuff
-    def get_pairs_found(self):
-        return self.__pairs
-
-__export__ = [AllPairs, get_max_comb_number]
+    def __get_values_array(self, item_list):
+        return [item.value for item in item_list]

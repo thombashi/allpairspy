@@ -1,11 +1,9 @@
 # encoding: utf-8
 
-#=========================================================================
+# =========================================================================
 # code from http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/190465
 # all (c) etc. are of the authors of this procedures, see link above
-#=========================================================================
-
-from six.moves import range
+# =========================================================================
 
 
 def xuniqueCombinations(items, n):
