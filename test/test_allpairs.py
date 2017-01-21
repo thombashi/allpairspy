@@ -6,10 +6,7 @@
 
 import pytest
 
-import metacomm.combinatorics.all_pairs2
-
-
-all_pairs = metacomm.combinatorics.all_pairs2.all_pairs2
+from metacomm import AllPairs
 
 
 class Test_pairewise(object):
@@ -24,7 +21,7 @@ class Test_pairewise(object):
             [6, 10, 15, 30, 60],
         ]
 
-        assert list(all_pairs(parameters)) == [
+        assert list(AllPairs(parameters)) == [
             ['Brand X', '98', 'Internal', 'Salaried', 6],
             ['Brand Y', 'NT', 'Modem', 'Hourly', 6],
             ['Brand Y', '2000', 'Internal', 'Part-Time', 10],
@@ -62,7 +59,7 @@ class Test_triplewise(object):
             [6, 10, 15, 30, 60],
         ]
 
-        assert list(all_pairs(parameters, n=3)) == [
+        assert list(AllPairs(parameters, n=3)) == [
             ['Brand X', '98', 'Internal', 'Salaried', 6],
             ['Brand Y', 'NT', 'Modem', 'Hourly', 6],
             ['Brand Y', '2000', 'Modem', 'Part-Time', 10],
@@ -110,7 +107,7 @@ class Test_pairewise_w_tested(object):
             ["Brand Y", "NT", "Internal", "Part-Time", 10],
         ]
 
-        assert list(all_pairs(parameters, previously_tested=tested)) == [
+        assert list(AllPairs(parameters, previously_tested=tested)) == [
             ['Brand Y', '2000', 'Modem', 'Salaried', 6],
             ['Brand X', 'XP', 'Internal', 'Contr.', 6],
             ['Brand Y', 'XP', 'Modem', 'Contr.', 30],
@@ -171,7 +168,7 @@ class Test_pairewise_filter(object):
 
             return True
 
-        assert list(all_pairs(parameters, filter_func=is_valid_combination)) == [
+        assert list(AllPairs(parameters, filter_func=is_valid_combination)) == [
             ['Brand X', '98', 'Internal', 'Salaried', 6],
             ['Brand Y', 'NT', 'Modem', 'Hourly', 6],
             ['Brand Y', '2000', 'Internal', 'Part-Time', 10],
@@ -230,7 +227,7 @@ class Test_pairewise_filter(object):
 
             return True
 
-        assert list(all_pairs(
+        assert list(AllPairs(
             [x[1] for x in parameters],
             filter_func=lambda values: is_valid_combination(
                 values, [x[0] for x in parameters])

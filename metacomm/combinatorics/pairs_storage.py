@@ -5,10 +5,14 @@ from six.moves import range
 from .combinatorics import xuniqueCombinations
 
 
-class node(object):
+class Node(object):
 
-    def __init__(self, id):
-        self.id = id
+    @property
+    def id(self):
+        return self.__node_id
+
+    def __init__(self, node_id):
+        self.__node_id = node_id
         self.counter = 0
         self.in_ = set()
         self.out = set()
@@ -36,7 +40,7 @@ class pairs_storage(object):
 
         self.__combs_arr[n - 1].add(key(comb))
         if n == 1 and comb[0].id not in self.__nodes:
-            self.__nodes[comb[0].id] = node(comb[0].id)
+            self.__nodes[comb[0].id] = Node(comb[0].id)
             return
 
         ids = [x.id for x in comb]
@@ -52,7 +56,7 @@ class pairs_storage(object):
                 self.add(comb)
 
     def get_node_info(self, item):
-        return self.__nodes.get(item.id, node(item.id))
+        return self.__nodes.get(item.id, Node(item.id))
 
     def get_combs(self):
         return self.__combs_arr

@@ -14,11 +14,19 @@ from .pairs_storage import (
 from .combinatorics import xuniqueCombinations
 
 
-class item(object):
+class Item(object):
 
-    def __init__(self, id, value):
-        self.id = id
-        self.value = value
+    @property
+    def id(self):
+        return self.__item_id
+
+    @property
+    def value(self):
+        return self.__value
+
+    def __init__(self, item_id, value):
+        self.__item_id = item_id
+        self.__value = value
         self.weights = []
 
     def __str__(self):
@@ -39,7 +47,7 @@ def cmp(lhs, rhs):
     return -1 if lhs.weights < rhs.weights else 1
 
 
-class all_pairs2(object):
+class AllPairs(object):
 
     def __iter__(self):
         return self
@@ -67,7 +75,7 @@ class all_pairs2(object):
 
         for i in range(len(options)):
             self.__working_arr.append([
-                item("a%iv%i" % (i, j), value)
+                Item("a%iv%i" % (i, j), value)
                 for j, value in enumerate(options[i])
             ])
 
@@ -83,8 +91,11 @@ class all_pairs2(object):
 
             tested = []
             for i, val in enumerate(arr):
-                idxs = [item(node.id, 0)
-                        for node in self.__working_arr[i] if node.value == val]
+                idxs = [
+                    Item(node.id, 0)
+                    for node in self.__working_arr[i] if node.value == val
+                ]
+
                 if len(idxs) != 1:
                     raise Exception(
                         "value from previously tested combination is not found in the options or found more than once")
@@ -112,6 +123,7 @@ class all_pairs2(object):
             if direction == 1:  # move forward
                 self.resort_working_array(chosen_values_arr[:i], i)
                 indexes[i] = 0
+
             # scan current array or go back
             elif direction == 0 or direction == -1:
                 indexes[i] += 1
@@ -183,4 +195,4 @@ class all_pairs2(object):
     def get_pairs_found(self):
         return self.__pairs
 
-__export__ = [all_pairs2, get_max_comb_number]
+__export__ = [AllPairs, get_max_comb_number]
