@@ -137,7 +137,8 @@ class AllPairs(object):
                     continue
                 direction = 0
             else:
-                raise ValueError("next(): unknown 'direction' code.")
+                raise ValueError(
+                    "next(): unknown 'direction' code '{}'".format(direction))
 
             chosen_values_arr[i] = self.__working_arr[i][indexes[i]]
 
