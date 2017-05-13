@@ -59,11 +59,11 @@ class AllPairs(object):
         """
 
         if len(options) < 2:
-            raise Exception("must provide more than one option")
+            raise ValueError("must provide more than one option")
 
         for arr in options:
             if not len(arr):
-                raise Exception("option arrays must have at least one item")
+                raise ValueError("option arrays must have at least one item")
 
         self.__filter_func = filter_func
         self.__n = n
@@ -82,11 +82,11 @@ class AllPairs(object):
                 continue
 
             if len(arr) != len(self.__working_arr):
-                raise Exception(
+                raise RuntimeError(
                     "previously tested combination is not complete")
 
             if not self.__filter_func(arr):
-                raise Exception("invalid tested combination is provided")
+                raise ValueError("invalid tested combination is provided")
 
             tested = []
             for i, val in enumerate(arr):
@@ -96,7 +96,7 @@ class AllPairs(object):
                 ]
 
                 if len(idxs) != 1:
-                    raise Exception(
+                    raise ValueError(
                         "value from previously tested combination is not found in the options or found more than once")
                 tested.append(idxs[0])
             self.__pairs.add_sequence(tested)
@@ -137,7 +137,7 @@ class AllPairs(object):
                     continue
                 direction = 0
             else:
-                raise Exception("next(): unknown 'direction' code.")
+                raise ValueError("next(): unknown 'direction' code.")
 
             chosen_values_arr[i] = self.__working_arr[i][indexes[i]]
 
