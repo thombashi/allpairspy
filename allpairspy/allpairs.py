@@ -7,11 +7,11 @@ from six.moves import (
     reduce,
 )
 
+from .combinatorics import xuniqueCombinations
 from .pairs_storage import (
     pairs_storage,
     key,
 )
-from .combinatorics import xuniqueCombinations
 
 
 class Item(object):
@@ -35,9 +35,10 @@ class Item(object):
 
 def get_max_comb_number(arr, n):
     items = [len(x) for x in arr]
-    f = lambda x, y: x * y
-    total = sum([reduce(f, z) for z in xuniqueCombinations(items, n)])
-    return total
+
+    return sum(
+        [reduce(lambda x, y: x * y, z) for z in xuniqueCombinations(items, n)]
+    )
 
 
 def cmp(lhs, rhs):
@@ -79,7 +80,8 @@ class AllPairs(object):
         for arr in previously_tested:
             if len(arr) == 0:
                 continue
-            elif len(arr) != len(self.__working_arr):
+
+            if len(arr) != len(self.__working_arr):
                 raise Exception(
                     "previously tested combination is not complete")
 
@@ -110,7 +112,7 @@ class AllPairs(object):
 
         if len(self.__pairs) == self.__max_unique_pairs_expected:
             # no reasons to search further - all pairs are found
-            raise StopIteration
+            raise StopIteration()
 
         previous_unique_pairs_count = len(self.__pairs)
         chosen_values_arr = [None] * len(self.__working_arr)
@@ -120,17 +122,17 @@ class AllPairs(object):
         i = 0
 
         while -1 < i < len(self.__working_arr):
-            if direction == 1:  # move forward
+            if direction == 1:
+                # move forward
                 self.resort_working_array(chosen_values_arr[:i], i)
                 indexes[i] = 0
-
-            # scan current array or go back
             elif direction == 0 or direction == -1:
+                # scan current array or go back
                 indexes[i] += 1
                 if indexes[i] >= len(self.__working_arr[i]):
                     direction = -1
                     if i == 0:
-                        raise StopIteration
+                        raise StopIteration()
                     i += direction
                     continue
                 direction = 0
@@ -148,13 +150,13 @@ class AllPairs(object):
             i += direction
 
         if len(self.__working_arr) != len(chosen_values_arr):
-            raise StopIteration
+            raise StopIteration()
 
         self.__pairs.add_sequence(chosen_values_arr)
 
         if len(self.__pairs) == previous_unique_pairs_count:
             # could not find new unique pairs - stop
-            raise StopIteration
+            raise StopIteration()
 
         # replace returned array elements with real values and return it
         return self.__get_values_array(chosen_values_arr)
