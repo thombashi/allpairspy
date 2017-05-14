@@ -168,7 +168,9 @@ class Test_pairewise_filter(object):
 
             return True
 
-        assert list(AllPairs(parameters, filter_func=is_valid_combination)) == [
+        assert list(AllPairs(
+            parameters, filter_func=is_valid_combination)
+        ) == [
             ['Brand X', '98', 'Internal', 'Salaried', 6],
             ['Brand Y', 'NT', 'Modem', 'Hourly', 6],
             ['Brand Y', '2000', 'Internal', 'Part-Time', 10],
@@ -203,7 +205,7 @@ class Test_pairewise_filter(object):
 
             """
             Should return True if combination is valid and False otherwise.
-            
+
             Dictionary that is passed here can be incomplete.
             To prevent search for unnecessary items filtering function
             is executed with found subset of data to validate it.
