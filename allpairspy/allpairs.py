@@ -64,7 +64,7 @@ class AllPairs(object):
         for parameter_list in parameter_matrix:
             if not len(parameter_list):
                 raise ValueError(
-                    "parameter arrays must have at least one item")
+                    "each parameter arrays must have at least one item")
 
         self.__filter_func = filter_func
         self.__n = n
