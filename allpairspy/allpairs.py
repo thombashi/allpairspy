@@ -33,7 +33,7 @@ class Item(object):
         return str(self.__dict__)
 
 
-def get_max_comb_number(prameter_matrix, n):
+def get_max_combination_number(prameter_matrix, n):
     param_len_list = [len(value_list) for value_list in prameter_matrix]
 
     return sum([
@@ -70,7 +70,7 @@ class AllPairs(object):
         self.__filter_func = filter_func
         self.__n = n
         self.__pairs = PairsStorage(n)
-        self.__max_unique_pairs_expected = get_max_comb_number(
+        self.__max_unique_pairs_expected = get_max_combination_number(
             parameter_matrix, n)
         self.__working_item_matrix = self.__get_working_item_matrix(
             parameter_matrix)
