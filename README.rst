@@ -65,6 +65,7 @@ Usage
 
 .. code:: 
 
+    PAIRWISE:
      0: ['Brand X', '98', 'Internal', 'Salaried', 6]
      1: ['Brand Y', 'NT', 'Modem', 'Hourly', 6]
      2: ['Brand Y', '2000', 'Internal', 'Part-Time', 10]
@@ -104,16 +105,13 @@ Known issues
   all the pairs. However, they are missing some other important 
   features and/or do not integrate well with Python.
 
-* Lousy written filtering function may lead to full permutation of  parameters.
+* Lousy written filtering function may lead to full permutation of parameters.
 
 * Version 2.0 has become slower (a side-effect of introducing ability to produce n-wise combinations).
 
+Dependencies
+------------
 
-Feedback
---------
-  
-Please submit patches, bug reports, and feature requests here:
-http://apps.sourceforge.net/trac/allpairs/newticket
+Python 2.7+ or 3.3+
 
-Other inquires can be directed to 
-metacomm(at)users.sourceforge.net
+- `six <https://pypi.python.org/pypi/six/>`__
