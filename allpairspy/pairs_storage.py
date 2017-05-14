@@ -1,8 +1,8 @@
 # encoding: utf-8
 
-from six.moves import range
+from itertools import combinations
 
-from .combinatorics import xuniqueCombinations
+from six.moves import range
 
 
 class Node(object):
@@ -59,7 +59,7 @@ class pairs_storage(object):
 
     def add_sequence(self, seq):
         for i in range(1, self.__n + 1):
-            for comb in xuniqueCombinations(seq, i):
+            for comb in combinations(seq, i):
                 self.add(comb)
 
     def get_node_info(self, item):

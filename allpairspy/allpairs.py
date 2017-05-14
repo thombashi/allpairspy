@@ -1,13 +1,13 @@
 # encoding: utf-8
 
 from functools import cmp_to_key
+from itertools import combinations
 
 from six.moves import (
     range,
     reduce,
 )
 
-from .combinatorics import xuniqueCombinations
 from .pairs_storage import (
     pairs_storage,
     key,
@@ -37,7 +37,7 @@ def get_max_comb_number(arr, n):
     items = [len(x) for x in arr]
 
     return sum(
-        [reduce(lambda x, y: x * y, z) for z in xuniqueCombinations(items, n)]
+        [reduce(lambda x, y: x * y, z) for z in combinations(items, n)]
     )
 
 
@@ -170,11 +170,10 @@ class AllPairs(object):
             for i in range(0, self.__n):
                 # numbers of new combinations to be created if this item is
                 # appended to array
-                new_combs.append(
-                    set([
-                        key(z) for z in xuniqueCombinations(
-                            chosen_values_arr + [item], i + 1)
-                    ]) - self.__pairs.get_combs()[i])
+                new_combs.append(set([
+                    key(z) for z in combinations(
+                        chosen_values_arr + [item], i + 1)
+                ]) - self.__pairs.get_combs()[i])
 
             # weighting the node
             # node that creates most of new pairs is the best
