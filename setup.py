@@ -1,9 +1,9 @@
 # encoding: utf-8
 
+from distutils.core import setup
 import os.path
 import sys
 
-from distutils.core import setup
 import setuptools
 
 
@@ -20,31 +20,31 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
     tests_require = [line.strip() for line in f if line.strip()]
 
 setup(
-    name='allpairspy',
-    version='2.1.0',
-    description='Pairwise test combinations generator',
-    long_description='''Pairwise (aka "all-pairs") test combinations generator written in
-Python. Allows one to create a set of tests using "pairwise 
-combinations" method, reducing a number of combinations of variables
+    name="allpairspy",
+    version="2.2.0",
+    description="Pairwise test combinations generator",
+    long_description="""Pairwise (aka 'all-pairs') test combinations generator written in
+Python. Allows one to create a set of tests using 'pairwise combinations' method,
+reducing a number of combinations of variables
 into a lesser set that covers most situations.
-''',
+""",
     author="Tsuyoshi Hombashi",
     author_email="gogogo.vm@gmail.com",
-    url='https://github.com/thombashi/allpairspy',
+    url="https://github.com/thombashi/allpairspy",
     install_requires=install_requires,
     tests_require=tests_require,
     setup_requires=pytest_runner,
     packages=setuptools.find_packages(exclude=["test*"]),
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
-        'Environment :: Console',
-        'Intended Audience :: Developers',
-        'Intended Audience :: Information Technology',
-        'Intended Audience :: System Administrators',
-        'License :: OSI Approved :: MIT License',
-        'Natural Language :: English',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
+        "Development Status :: 5 - Production/Stable",
+        "Environment :: Console",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Information Technology",
+        "Intended Audience :: System Administrators",
+        "License :: OSI Approved :: MIT License",
+        "Natural Language :: English",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
@@ -52,7 +52,9 @@ into a lesser set that covers most situations.
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
-        'Topic :: Software Development :: Testing',
-        'Topic :: Utilities',
+        "Topic :: Software Development :: Libraries",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Software Development :: Testing",
+        "Topic :: Utilities",
     ]
 )
