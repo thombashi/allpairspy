@@ -41,26 +41,26 @@ class pairs_storage(object):
             set() for _i in range(n)
         ]
 
-    def add(self, comb):
-        n = len(comb)
+    def add(self, combination):
+        n = len(combination)
         assert(n > 0)
 
-        self.__combs_arr[n - 1].add(key(comb))
-        if n == 1 and comb[0].id not in self.__nodes:
-            self.__nodes[comb[0].id] = Node(comb[0].id)
+        self.__combs_arr[n - 1].add(key(combination))
+        if n == 1 and combination[0].id not in self.__nodes:
+            self.__nodes[combination[0].id] = Node(combination[0].id)
             return
 
-        ids = [x.id for x in comb]
+        ids = [x.id for x in combination]
         for i, id in enumerate(ids):
             curr = self.__nodes[id]
             curr.inc_counter()
             curr.in_.update(ids[:i])
             curr.out.update(ids[i + 1:])
 
-    def add_sequence(self, seq):
+    def add_sequence(self, sequence):
         for i in range(1, self.__n + 1):
-            for comb in combinations(seq, i):
-                self.add(comb)
+            for combination in combinations(sequence, i):
+                self.add(combination)
 
     def get_node_info(self, item):
         return self.__nodes.get(item.id, Node(item.id))
