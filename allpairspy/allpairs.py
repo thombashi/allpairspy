@@ -191,10 +191,10 @@ class AllPairs(object):
     def __get_working_item_matrix(self, parameter_matrix):
         return [
             [
-                Item("a%iv%i" % (i, j), value)
-                for j, value in enumerate(parameter_matrix[i])
+                Item("a{:d}v{:d}".format(param_idx, value_idx), value)
+                for value_idx, value in enumerate(value_list)
             ]
-            for i in range(len(parameter_matrix))
+            for param_idx, value_list in enumerate(parameter_matrix)
         ]
 
     def __get_values_array(self, item_list):
