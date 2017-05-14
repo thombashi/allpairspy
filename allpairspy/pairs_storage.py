@@ -32,7 +32,7 @@ def key(items):
     return "->".join([x.id for x in items])
 
 
-class pairs_storage(object):
+class PairsStorage(object):
 
     def __init__(self, n):
         self.__n = n

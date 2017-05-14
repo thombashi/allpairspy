@@ -9,7 +9,7 @@ from six.moves import (
 )
 
 from .pairs_storage import (
-    pairs_storage,
+    PairsStorage,
     key,
 )
 
@@ -67,7 +67,7 @@ class AllPairs(object):
 
         self.__filter_func = filter_func
         self.__n = n
-        self.__pairs = pairs_storage(n)
+        self.__pairs = PairsStorage(n)
         self.__max_unique_pairs_expected = get_max_comb_number(options, n)
         self.__working_arr = []
 
