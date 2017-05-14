@@ -126,7 +126,7 @@ class AllPairs(object):
         while -1 < i < len(self.__working_item_array):
             if direction == 1:
                 # move forward
-                self.resort_working_array(chosen_values_arr[:i], i)
+                self.__resort_working_array(chosen_values_arr[:i], i)
                 indexes[i] = 0
             elif direction == 0 or direction == -1:
                 # scan current array or go back
@@ -164,7 +164,7 @@ class AllPairs(object):
         # replace returned array elements with real values and return it
         return self.__get_values_array(chosen_values_arr)
 
-    def resort_working_array(self, chosen_values_arr, num):
+    def __resort_working_array(self, chosen_values_arr, num):
         for item in self.__working_item_array[num]:
             data_node = self.__pairs.get_node_info(item)
 
