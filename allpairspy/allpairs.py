@@ -71,13 +71,8 @@ class AllPairs(object):
         self.__pairs = PairsStorage(n)
         self.__max_unique_pairs_expected = get_max_comb_number(
             parameter_matrix, n)
-        self.__working_item_array = []
-
-        for i in range(len(parameter_matrix)):
-            self.__working_item_array.append([
-                Item("a%iv%i" % (i, j), value)
-                for j, value in enumerate(parameter_matrix[i])
-            ])
+        self.__working_item_array = self.__get_working_item_matrix(
+            parameter_matrix)
 
         for arr in previously_tested:
             if len(arr) == 0:
@@ -192,6 +187,15 @@ class AllPairs(object):
             item.weights += [-len(data_node.in_)]
 
         self.__working_item_array[num].sort(key=cmp_to_key(cmp_item))
+
+    def __get_working_item_matrix(self, parameter_matrix):
+        return [
+            [
+                Item("a%iv%i" % (i, j), value)
+                for j, value in enumerate(parameter_matrix[i])
+            ]
+            for i in range(len(parameter_matrix))
+        ]
 
     def __get_values_array(self, item_list):
         return [item.value for item in item_list]
