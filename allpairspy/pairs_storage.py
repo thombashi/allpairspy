@@ -41,7 +41,7 @@ class PairsStorage(object):
             set() for _i in range(n)
         ]
 
-    def add(self, combination):
+    def __add_combination(self, combination):
         n = len(combination)
         assert(n > 0)
 
@@ -60,7 +60,7 @@ class PairsStorage(object):
     def add_sequence(self, sequence):
         for i in range(1, self.__n + 1):
             for combination in combinations(sequence, i):
-                self.add(combination)
+                self.__add_combination(combination)
 
     def get_node_info(self, item):
         return self.__nodes.get(item.id, Node(item.id))
