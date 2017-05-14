@@ -33,12 +33,13 @@ class Item(object):
         return str(self.__dict__)
 
 
-def get_max_comb_number(arr, n):
-    items = [len(x) for x in arr]
+def get_max_comb_number(prameter_matrix, n):
+    param_len_list = [len(value_list) for value_list in prameter_matrix]
 
-    return sum(
-        [reduce(lambda x, y: x * y, z) for z in combinations(items, n)]
-    )
+    return sum([
+        reduce(lambda x, y: x * y, z)
+        for z in combinations(param_len_list, n)
+    ])
 
 
 def cmp_item(lhs, rhs):
