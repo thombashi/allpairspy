@@ -41,6 +41,20 @@ class PairsStorage(object):
             set() for _i in range(n)
         ]
 
+    def __len__(self):
+        return len(self.__combs_arr[-1])
+
+    def add_sequence(self, sequence):
+        for i in range(1, self.__n + 1):
+            for combination in combinations(sequence, i):
+                self.__add_combination(combination)
+
+    def get_node_info(self, item):
+        return self.__nodes.get(item.id, Node(item.id))
+
+    def get_combs(self):
+        return self.__combs_arr
+
     def __add_combination(self, combination):
         n = len(combination)
         assert(n > 0)
@@ -56,17 +70,3 @@ class PairsStorage(object):
             curr.inc_counter()
             curr.in_.update(ids[:i])
             curr.out.update(ids[i + 1:])
-
-    def add_sequence(self, sequence):
-        for i in range(1, self.__n + 1):
-            for combination in combinations(sequence, i):
-                self.__add_combination(combination)
-
-    def get_node_info(self, item):
-        return self.__nodes.get(item.id, Node(item.id))
-
-    def get_combs(self):
-        return self.__combs_arr
-
-    def __len__(self):
-        return len(self.__combs_arr[-1])
