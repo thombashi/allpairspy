@@ -51,30 +51,31 @@ def cmp_item(lhs, rhs):
 class AllPairs(object):
 
     def __init__(
-            self, options, filter_func=lambda x: True, previously_tested=[[]],
+            self, parameter_matrix, filter_func=lambda x: True, previously_tested=[[]],
             n=2):
         """
         TODO: check that input arrays are:
             - (optional) has no duplicated values inside single array / or compress such values
         """
 
-        if len(options) < 2:
+        if len(parameter_matrix) < 2:
             raise ValueError("must provide more than one option")
 
-        for arr in options:
+        for arr in parameter_matrix:
             if not len(arr):
                 raise ValueError("option arrays must have at least one item")
 
         self.__filter_func = filter_func
         self.__n = n
         self.__pairs = PairsStorage(n)
-        self.__max_unique_pairs_expected = get_max_comb_number(options, n)
+        self.__max_unique_pairs_expected = get_max_comb_number(
+            parameter_matrix, n)
         self.__working_arr = []
 
-        for i in range(len(options)):
+        for i in range(len(parameter_matrix)):
             self.__working_arr.append([
                 Item("a%iv%i" % (i, j), value)
-                for j, value in enumerate(options[i])
+                for j, value in enumerate(parameter_matrix[i])
             ])
 
         for arr in previously_tested:
@@ -97,7 +98,7 @@ class AllPairs(object):
 
                 if len(idxs) != 1:
                     raise ValueError(
-                        "value from previously tested combination is not found in the options or found more than once")
+                        "value from previously tested combination is not found in the parameter_matrix or found more than once")
                 tested.append(idxs[0])
             self.__pairs.add_sequence(tested)
 
