@@ -63,7 +63,7 @@ class AllPairs(object):
             raise ValueError("must provide more than one option")
 
         for parameter_list in parameter_matrix:
-            if not len(parameter_list):
+            if not parameter_list:
                 raise ValueError(
                     "each parameter arrays must have at least one item")
 
