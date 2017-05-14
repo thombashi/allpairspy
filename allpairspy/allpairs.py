@@ -51,8 +51,8 @@ def cmp_item(lhs, rhs):
 class AllPairs(object):
 
     def __init__(
-            self, parameter_matrix, filter_func=lambda x: True, previously_tested=[[]],
-            n=2):
+            self, parameter_matrix, filter_func=lambda x: True,
+            previously_tested=[[]], n=2):
         """
         TODO: check that input arrays are:
             - (optional) has no duplicated values inside single array / or compress such values
@@ -89,13 +89,18 @@ class AllPairs(object):
             for i, val in enumerate(arr):
                 idxs = [
                     Item(node.id, 0)
-                    for node in self.__working_item_matrix[i] if node.value == val
+                    for node in self.__working_item_matrix[i]
+                    if node.value == val
                 ]
 
                 if len(idxs) != 1:
                     raise ValueError(
-                        "value from previously tested combination is not found in the parameter_matrix or found more than once")
+                        "value from previously tested combination is not "
+                        "found in the parameter_matrix or found more than "
+                        "once")
+
                 tested.append(idxs[0])
+
             self.__pairs.add_sequence(tested)
 
     def __iter__(self):
