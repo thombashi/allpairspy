@@ -61,9 +61,10 @@ class AllPairs(object):
         if len(parameter_matrix) < 2:
             raise ValueError("must provide more than one option")
 
-                raise ValueError("option arrays must have at least one item")
         for parameter_list in parameter_matrix:
             if not len(parameter_list):
+                raise ValueError(
+                    "parameter arrays must have at least one item")
 
         self.__filter_func = filter_func
         self.__n = n
