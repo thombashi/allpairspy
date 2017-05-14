@@ -71,14 +71,14 @@ class AllPairs(object):
         self.__pairs = PairsStorage(n)
         self.__max_unique_pairs_expected = get_max_comb_number(
             parameter_matrix, n)
-        self.__working_item_array = self.__get_working_item_matrix(
+        self.__working_item_matrix = self.__get_working_item_matrix(
             parameter_matrix)
 
         for arr in previously_tested:
             if len(arr) == 0:
                 continue
 
-            if len(arr) != len(self.__working_item_array):
+            if len(arr) != len(self.__working_item_matrix):
                 raise RuntimeError(
                     "previously tested combination is not complete")
 
@@ -89,7 +89,7 @@ class AllPairs(object):
             for i, val in enumerate(arr):
                 idxs = [
                     Item(node.id, 0)
-                    for node in self.__working_item_array[i] if node.value == val
+                    for node in self.__working_item_matrix[i] if node.value == val
                 ]
 
                 if len(idxs) != 1:
@@ -112,13 +112,13 @@ class AllPairs(object):
             raise StopIteration()
 
         previous_unique_pairs_count = len(self.__pairs)
-        chosen_values_arr = [None] * len(self.__working_item_array)
-        indexes = [None] * len(self.__working_item_array)
+        chosen_values_arr = [None] * len(self.__working_item_matrix)
+        indexes = [None] * len(self.__working_item_matrix)
 
         direction = 1
         i = 0
 
-        while -1 < i < len(self.__working_item_array):
+        while -1 < i < len(self.__working_item_matrix):
             if direction == 1:
                 # move forward
                 self.__resort_working_array(chosen_values_arr[:i], i)
@@ -126,7 +126,7 @@ class AllPairs(object):
             elif direction == 0 or direction == -1:
                 # scan current array or go back
                 indexes[i] += 1
-                if indexes[i] >= len(self.__working_item_array[i]):
+                if indexes[i] >= len(self.__working_item_matrix[i]):
                     direction = -1
                     if i == 0:
                         raise StopIteration()
@@ -137,7 +137,7 @@ class AllPairs(object):
                 raise ValueError(
                     "next(): unknown 'direction' code '{}'".format(direction))
 
-            chosen_values_arr[i] = self.__working_item_array[i][indexes[i]]
+            chosen_values_arr[i] = self.__working_item_matrix[i][indexes[i]]
 
             if self.__filter_func(
                     self.__get_values_array(chosen_values_arr[:i + 1])):
@@ -147,7 +147,7 @@ class AllPairs(object):
                 direction = 0
             i += direction
 
-        if len(self.__working_item_array) != len(chosen_values_arr):
+        if len(self.__working_item_matrix) != len(chosen_values_arr):
             raise StopIteration()
 
         self.__pairs.add_sequence(chosen_values_arr)
@@ -160,7 +160,7 @@ class AllPairs(object):
         return self.__get_values_array(chosen_values_arr)
 
     def __resort_working_array(self, chosen_values_arr, num):
-        for item in self.__working_item_array[num]:
+        for item in self.__working_item_matrix[num]:
             data_node = self.__pairs.get_node_info(item)
 
             new_combs = []
@@ -186,7 +186,7 @@ class AllPairs(object):
             # connections; somehow it works out better ;)
             item.weights += [-len(data_node.in_)]
 
-        self.__working_item_array[num].sort(key=cmp_to_key(cmp_item))
+        self.__working_item_matrix[num].sort(key=cmp_to_key(cmp_item))
 
     def __get_working_item_matrix(self, parameter_matrix):
         return [
