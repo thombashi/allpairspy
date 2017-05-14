@@ -89,9 +89,9 @@ class AllPairs(object):
             tested = []
             for i, val in enumerate(arr):
                 idxs = [
-                    Item(node.id, 0)
-                    for node in self.__working_item_matrix[i]
-                    if node.value == val
+                    Item(item.id, 0)
+                    for item in self.__working_item_matrix[i]
+                    if item.value == val
                 ]
 
                 if len(idxs) != 1:
