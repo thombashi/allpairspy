@@ -41,7 +41,7 @@ def get_max_comb_number(arr, n):
     )
 
 
-def cmp(lhs, rhs):
+def cmp_item(lhs, rhs):
     if lhs.weights == rhs.weights:
         return 0
 
@@ -189,7 +189,7 @@ class AllPairs(object):
             # connections; somehow it works out better ;)
             item.weights += [-len(data_node.in_)]
 
-        self.__working_arr[num].sort(key=cmp_to_key(cmp))
+        self.__working_arr[num].sort(key=cmp_to_key(cmp_item))
 
     def __get_values_array(self, item_list):
         return [item.value for item in item_list]
