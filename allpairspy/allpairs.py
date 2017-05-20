@@ -1,7 +1,13 @@
 # encoding: utf-8
 
+from collections import (
+    namedtuple,
+    OrderedDict,
+)
 from functools import cmp_to_key
 from itertools import combinations
+
+import six
 
 from six.moves import (
     range,
@@ -51,23 +57,33 @@ def cmp_item(lhs, rhs):
 
 class AllPairs(object):
 
+    @property
+    def Pairs(self):
+        return self.__Pairs
+
     def __init__(
-            self, parameter_matrix, filter_func=lambda x: True,
+            self, parameters, filter_func=lambda x: True,
             previously_tested=[[]], n=2):
         """
         TODO: check that input arrays are:
             - (optional) has no duplicated values inside single array / or compress such values
         """
 
-        self.__validate_parameter(parameter_matrix)
+        self.__validate_parameter(parameters)
+
+        self.__is_ordered_dict_param = isinstance(parameters, OrderedDict)
+        self.__param_name_list = self.__extract_param_name_list(parameters)
+        self.__Pairs = namedtuple("Pairs", self.__param_name_list)
 
         self.__filter_func = filter_func
         self.__n = n
         self.__pairs = PairsStorage(n)
+
+        value_matrix = self.__extract_value_matrix(parameters)
         self.__max_unique_pairs_expected = get_max_combination_number(
-            parameter_matrix, n)
+            value_matrix, n)
         self.__working_item_matrix = self.__get_working_item_matrix(
-            parameter_matrix)
+            value_matrix)
 
         for arr in previously_tested:
             if len(arr) == 0:
@@ -91,7 +107,7 @@ class AllPairs(object):
                 if len(idxs) != 1:
                     raise ValueError(
                         "value from previously tested combination is not "
-                        "found in the parameter_matrix or found more than "
+                        "found in the parameters or found more than "
                         "once")
 
                 tested.append(idxs[0])
@@ -157,9 +173,17 @@ class AllPairs(object):
             raise StopIteration()
 
         # replace returned array elements with real values and return it
-        return self.__get_values_array(chosen_values_arr)
+        return self.__get_iteration_value(chosen_values_arr)
 
     def __validate_parameter(self, value):
+        if isinstance(value, OrderedDict):
+            for parameter_list in six.itervalues(value):
+                if not parameter_list:
+                    raise ValueError(
+                        "each parameter arrays must have at least one item")
+
+            return
+
         if len(value) < 2:
             raise ValueError("must provide more than one option")
 
@@ -208,3 +232,21 @@ class AllPairs(object):
 
     def __get_values_array(self, item_list):
         return [item.value for item in item_list]
+
+    def __get_iteration_value(self, item_list):
+        if not self.__param_name_list:
+            return [item.value for item in item_list]
+
+        return self.__Pairs(*[item.value for item in item_list])
+
+    def __extract_param_name_list(self, parameters):
+        if not self.__is_ordered_dict_param:
+            return []
+
+        return list(parameters)
+
+    def __extract_value_matrix(self, parameters):
+        if not self.__is_ordered_dict_param:
+            return parameters
+
+        return [v for v in (six.itervalues(parameters))]
