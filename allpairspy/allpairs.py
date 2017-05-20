@@ -59,13 +59,7 @@ class AllPairs(object):
             - (optional) has no duplicated values inside single array / or compress such values
         """
 
-        if len(parameter_matrix) < 2:
-            raise ValueError("must provide more than one option")
-
-        for parameter_list in parameter_matrix:
-            if not parameter_list:
-                raise ValueError(
-                    "each parameter arrays must have at least one item")
+        self.__validate_parameter(parameter_matrix)
 
         self.__filter_func = filter_func
         self.__n = n
@@ -164,6 +158,15 @@ class AllPairs(object):
 
         # replace returned array elements with real values and return it
         return self.__get_values_array(chosen_values_arr)
+
+    def __validate_parameter(self, value):
+        if len(value) < 2:
+            raise ValueError("must provide more than one option")
+
+        for parameter_list in value:
+            if not parameter_list:
+                raise ValueError(
+                    "each parameter arrays must have at least one item")
 
     def __resort_working_array(self, chosen_values_arr, num):
         for item in self.__working_item_matrix[num]:
