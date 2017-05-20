@@ -16,31 +16,20 @@ class Test_pairewise_OrderedDict(object):
     def test_normal(self):
         parameters = OrderedDict({
             "brand": ["Brand X", "Brand Y"],
-            "os": ["98", "NT", "2000", "XP"],
-            "minute": [10, 15, 30, 60],
+            "os": ["NT", "2000", "XP"],
+            "minute": [15, 30, 60],
         })
 
         all_pairs = AllPairs(parameters)
         pairs_class = all_pairs.Pairs
 
-        assert set(list(all_pairs)).difference([
-            pairs_class(brand='Brand X', os='2000', minute=10),
-            pairs_class(brand='Brand X', os='2000', minute=30),
-            pairs_class(brand='Brand X', os='2000', minute=60),
-            pairs_class(brand='Brand X', os='98', minute=10),
-            pairs_class(brand='Brand X', os='98', minute=15),
-            pairs_class(brand='Brand X', os='98', minute=30),
-            pairs_class(brand='Brand X', os='NT', minute=15),
-            pairs_class(brand='Brand X', os='NT', minute=30),
-            pairs_class(brand='Brand X', os='NT', minute=60),
-            pairs_class(brand='Brand X', os='XP', minute=10),
-            pairs_class(brand='Brand X', os='XP', minute=15),
-            pairs_class(brand='Brand X', os='XP', minute=60),
-            pairs_class(brand='Brand Y', os='2000', minute=15),
-            pairs_class(brand='Brand Y', os='98', minute=60),
-            pairs_class(brand='Brand Y', os='NT', minute=10),
-            pairs_class(brand='Brand Y', os='XP', minute=30),
-        ]) == set()
+        for pairs in all_pairs:
+            assert pairs.brand == 'Brand X'
+            assert pairs.os == 'NT'
+            assert pairs.minute == 15
+            break
+
+        assert len(list(AllPairs(parameters))) == 9
 
 
 class Test_pairewise_list(object):
