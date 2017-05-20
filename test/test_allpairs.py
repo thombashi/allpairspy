@@ -20,10 +20,7 @@ class Test_pairewise_OrderedDict(object):
             "minute": [15, 30, 60],
         })
 
-        all_pairs = AllPairs(parameters)
-        pairs_class = all_pairs.Pairs
-
-        for pairs in all_pairs:
+        for pairs in AllPairs(parameters):
             assert pairs.brand == 'Brand X'
             assert pairs.os == 'NT'
             assert pairs.minute == 15
