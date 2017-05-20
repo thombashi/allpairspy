@@ -107,13 +107,16 @@ You can restrict pairs by setting filtering-function to ``filter_func`` at
         """
 
         n = len(row)
+
         if n > 1:
             # Brand Y does not support Windows 98
             if "98" == row[1] and "Brand Y" == row[0]:
                 return False
+
             # Brand X does not work with XP
             if "XP" == row[1] and "Brand X" == row[0]:
                 return False
+
         if n > 4:
             # Contractors are billed in 30 min increments
             if "Contr." == row[3] and row[4] < 30:
@@ -187,6 +190,56 @@ Pairs will be returned as namedtuple instances.
      9: Pairs(brand='Brand X', os='98', minute=30)
     10: Pairs(brand='Brand X', os='XP', minute=15)
     11: Pairs(brand='Brand X', os='2000', minute=15)
+
+Parameterized testing with pairwise by using py.test
+====================================================================
+
+.. code:: python
+
+    import pytest
+    from allpairspy import AllPairs
+
+    def function_to_be_tested(brand, operating_system, minute):
+        # do something
+        return True
+
+    class Test__parameterized(object):
+
+        @pytest.mark.parametrize(
+            ["brand", "operating_system", "minute"],
+            [
+                value_list for value_list in AllPairs([
+                    ["Brand X", "Brand Y"],
+                    ["98", "NT", "2000", "XP"],
+                    [10, 15, 30, 60]
+                ])
+            ])
+        def test(self, brand, operating_system, minute):
+            assert function_to_be_tested(brand, operating_system, minute)
+
+.. code:: 
+
+    $ py.test test_parameterize.py -v
+    ============================================================================ test session starts =============================================================================
+    ...
+    collected 16 items
+
+    test_parameterize.py::Test__parameterized::test[Brand X-98-10] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand Y-NT-10] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand Y-2000-15] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand X-XP-15] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand X-2000-30] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand Y-XP-30] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand Y-98-60] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand X-NT-60] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand X-NT-30] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand X-98-30] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand X-XP-60] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand X-2000-60] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand X-2000-10] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand X-XP-10] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand X-98-15] PASSED
+    test_parameterize.py::Test__parameterized::test[Brand X-NT-15] PASSED
 
 
 Other Examples
