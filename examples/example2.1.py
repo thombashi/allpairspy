@@ -12,7 +12,8 @@ Demo of filtering capabilities
 
 def is_valid_combination(row):
     """
-    Should return True if combination is valid and False otherwise.
+    This is a filtering function. Filtering functions should return True
+    if combination is valid and False otherwise.
 
     Test row that is passed here can be incomplete.
     To prevent search for unnecessary items filtering function
@@ -20,13 +21,16 @@ def is_valid_combination(row):
     """
 
     n = len(row)
+
     if n > 1:
         # Brand Y does not support Windows 98
         if "98" == row[1] and "Brand Y" == row[0]:
             return False
+
         # Brand X does not work with XP
         if "XP" == row[1] and "Brand X" == row[0]:
             return False
+
     if n > 4:
         # Contractors are billed in 30 min increments
         if "Contr." == row[3] and row[4] < 30:

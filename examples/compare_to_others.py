@@ -10,7 +10,7 @@ from allpairspy import AllPairs
 Provided to make it easier to compare efficiency with other tools
 as per http://pairwise.org/tools.asp
 
-Current iutput is:
+Current iuput is:
 
 3^4: produces 9 rows
 3^13: produces 17 rows
@@ -19,7 +19,6 @@ Current iutput is:
 3^100: produces 29 rows
 10^20: produces 219 rows
 10^10: produces 172 rows
-
 """
 
 
