@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from __future__ import print_function
-
-from allpairspy import AllPairs
-
 """
 Demo of filtering capabilities
 """
+
+from __future__ import print_function
+
+from allpairspy import AllPairs
 
 
 def is_valid_combination(row):
@@ -49,5 +49,6 @@ parameters = [
     [6, 10, 15, 30, 60]
 ]
 
+print("PAIRWISE:")
 for i, pairs in enumerate(AllPairs(parameters, filter_func=is_valid_combination)):
     print("{:2d}: {}".format(i, pairs))

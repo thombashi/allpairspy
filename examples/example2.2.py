@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from __future__ import print_function
-import functools
-
-from allpairspy import AllPairs
-
 """
 Another demo of filtering capabilities.
 Demonstrates how to use named parameters
 """
+
+from __future__ import print_function
+
+import functools
+
+from allpairspy import AllPairs
 
 
 def is_valid_combination(values, names):
@@ -59,5 +60,6 @@ pairwise = AllPairs(
         values, [x[0] for x in parameters])
 )
 
+print("PAIRWISE:")
 for i, pairs in enumerate(pairwise):
     print("{:2d}: {}".format(i, pairs))
