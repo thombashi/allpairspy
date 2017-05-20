@@ -20,5 +20,5 @@ parameters = [
 ]
 
 print("TRIPLEWISE:")
-for i, parameter in enumerate(AllPairs(parameters, n=3)):
-    print("{:2d}: {}".format(i, parameter))
+for i, pairs in enumerate(AllPairs(parameters, n=3)):
+    print("{:2d}: {}".format(i, pairs))

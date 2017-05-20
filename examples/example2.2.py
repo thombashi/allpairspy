@@ -42,6 +42,7 @@ def is_valid_combination(values, names):
 
     return True
 
+
 # sample parameters are is taken from
 # http://www.stsc.hill.af.mil/consulting/sw_testing/improvement/cst.html
 parameters = [
@@ -58,5 +59,5 @@ pairwise = AllPairs(
         values, [x[0] for x in parameters])
 )
 
-for i, parameter in enumerate(pairwise):
-    print("{:2d}: {}".format(i, parameter))
+for i, pairs in enumerate(pairwise):
+    print("{:2d}: {}".format(i, pairs))

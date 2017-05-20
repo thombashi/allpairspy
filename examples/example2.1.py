@@ -49,5 +49,5 @@ parameters = [
     [6, 10, 15, 30, 60]
 ]
 
-for i, parameter in enumerate(AllPairs(parameters, filter_func=is_valid_combination)):
-    print("{:2d}: {}".format(i, parameter))
+for i, pairs in enumerate(AllPairs(parameters, filter_func=is_valid_combination)):
+    print("{:2d}: {}".format(i, pairs))

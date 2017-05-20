@@ -20,5 +20,5 @@ parameters = [
 ]
 
 print("PAIRWISE:")
-for i, parameter in enumerate(AllPairs(parameters)):
-    print("{:2d}: {}".format(i, parameter))
+for i, pairs in enumerate(AllPairs(parameters)):
+    print("{:2d}: {}".format(i, pairs))
