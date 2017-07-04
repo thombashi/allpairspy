@@ -263,7 +263,7 @@ Installation
 
 .. code::
 
-    pip install allpairpy
+    pip install allpairspy
 
 
 Known issues
