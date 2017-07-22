@@ -63,11 +63,14 @@ class AllPairs(object):
 
     def __init__(
             self, parameters, filter_func=lambda x: True,
-            previously_tested=[[]], n=2):
+            previously_tested=None, n=2):
         """
         TODO: check that input arrays are:
             - (optional) has no duplicated values inside single array / or compress such values
         """
+
+        if not previously_tested:
+            previously_tested = [[]]
 
         self.__validate_parameter(parameters)
 
@@ -86,7 +89,7 @@ class AllPairs(object):
             value_matrix)
 
         for arr in previously_tested:
-            if len(arr) == 0:
+            if not arr:
                 continue
 
             if len(arr) != len(self.__working_item_matrix):
@@ -121,7 +124,7 @@ class AllPairs(object):
         return self.__next__()
 
     def __next__(self):
-        assert(len(self.__pairs) <= self.__max_unique_pairs_expected)
+        assert len(self.__pairs) <= self.__max_unique_pairs_expected
 
         if len(self.__pairs) == self.__max_unique_pairs_expected:
             # no reasons to search further - all pairs are found
@@ -157,7 +160,7 @@ class AllPairs(object):
 
             if self.__filter_func(
                     self.__get_values_array(chosen_values_arr[:i + 1])):
-                assert(direction > -1)
+                assert direction > -1
                 direction = 1
             else:
                 direction = 0
@@ -249,4 +252,4 @@ class AllPairs(object):
         if not self.__is_ordered_dict_param:
             return parameters
 
-        return [v for v in (six.itervalues(parameters))]
+        return [v for v in six.itervalues(parameters)]

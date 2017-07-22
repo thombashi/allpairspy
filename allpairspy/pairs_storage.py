@@ -57,7 +57,7 @@ class PairsStorage(object):
 
     def __add_combination(self, combination):
         n = len(combination)
-        assert(n > 0)
+        assert n > 0
 
         self.__combs_arr[n - 1].add(key(combination))
         if n == 1 and combination[0].id not in self.__nodes:
