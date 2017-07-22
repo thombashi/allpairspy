@@ -29,7 +29,7 @@ reducing a number of combinations of variables
 into a lesser set that covers most situations.
 """,
     author="Tsuyoshi Hombashi",
-    author_email="gogogo.vm@gmail.com",
+    author_email="tsuyoshi.hombashi@gmail.com",
     url="https://github.com/thombashi/allpairspy",
     install_requires=install_requires,
     tests_require=tests_require,

@@ -1,14 +1,13 @@
 # encoding: utf-8
 
 """
-.. codeauthor:: Tsuyoshi Hombashi <gogogo.vm@gmail.com>
+.. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
 
 from collections import OrderedDict
 
-import pytest
-
 from allpairspy import AllPairs
+import pytest
 
 
 class Test_pairewise_OrderedDict(object):
