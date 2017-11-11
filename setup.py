@@ -1,6 +1,5 @@
 # encoding: utf-8
 
-from distutils.core import setup
 import os.path
 import sys
 
@@ -12,14 +11,13 @@ REQUIREMENT_DIR = "requirements"
 needs_pytest = set(["pytest", "test", "ptr"]).intersection(sys.argv)
 pytest_runner = ["pytest-runner"] if needs_pytest else []
 
-
 with open(os.path.join(REQUIREMENT_DIR, "requirements.txt")) as f:
     install_requires = [line.strip() for line in f if line.strip()]
 
 with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
-    tests_require = [line.strip() for line in f if line.strip()]
+    tests_requires = [line.strip() for line in f if line.strip()]
 
-setup(
+setuptools.setup(
     name="allpairspy",
     version="2.3.1",
     description="Pairwise test combinations generator",
@@ -32,7 +30,10 @@ into a lesser set that covers most situations.
     author_email="tsuyoshi.hombashi@gmail.com",
     url="https://github.com/thombashi/allpairspy",
     install_requires=install_requires,
-    tests_require=tests_require,
+    tests_require=tests_requires,
+    extras_require={
+        "test": tests_requires,
+    },
     setup_requires=pytest_runner,
     packages=setuptools.find_packages(exclude=["test*"]),
     classifiers=[
@@ -55,5 +56,4 @@ into a lesser set that covers most situations.
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Software Development :: Testing",
         "Topic :: Utilities",
-    ]
-)
+    ])
