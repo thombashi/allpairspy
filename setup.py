@@ -19,7 +19,7 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
 
 setuptools.setup(
     name="allpairspy",
-    version="2.3.1",
+    version="2.4.0",
     description="Pairwise test combinations generator",
     long_description="""Pairwise (aka 'all-pairs') test combinations generator written in
 Python. Allows one to create a set of tests using 'pairwise combinations' method,
