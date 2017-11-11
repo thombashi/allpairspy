@@ -28,8 +28,17 @@ class Node(object):
         self.__counter += 1
 
 
+key_cache = {}
+
+
 def key(items):
-    return "->".join([x.id for x in items])
+    if items in key_cache:
+        return key_cache[items]
+
+    key_value = tuple([x.id for x in items])
+    key_cache[items] = key_value
+
+    return key_value
 
 
 class PairsStorage(object):
