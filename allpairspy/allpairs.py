@@ -215,13 +215,17 @@ class AllPairs(object):
 
             # less used outbound connections most likely to produce more new
             # pairs while search continues
-            item.weights += [len(data_node.out)]
-            item.weights += [len(x) for x in reversed(new_combs[:-1])]
-            item.weights += [-data_node.counter]  # less used node is better
+            item.weights += [
+                len(data_node.out)
+            ] + [
+                len(x) for x in reversed(new_combs[:-1])
+            ] + [
+                -data_node.counter  # less used node is better
+            ]
 
             # otherwise we will prefer node with most of free inbound
             # connections; somehow it works out better ;)
-            item.weights += [-len(data_node.in_)]
+            item.weights.append(-len(data_node.in_))
 
         self.__working_item_matrix[num].sort(key=cmp_to_key(cmp_item))
 
