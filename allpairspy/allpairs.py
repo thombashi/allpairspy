@@ -199,14 +199,15 @@ class AllPairs(object):
         for item in self.__working_item_matrix[num]:
             data_node = self.__pairs.get_node_info(item)
 
-            new_combs = []
-            for i in range(0, self.__n):
+            new_combs = [
                 # numbers of new combinations to be created if this item is
                 # appended to array
-                new_combs.append(set([
+                set([
                     key(z) for z in combinations(
                         chosen_values_arr + [item], i + 1)
-                ]) - self.__pairs.get_combs()[i])
+                ]) - self.__pairs.get_combs()[i]
+                for i in range(0, self.__n)
+            ]
 
             # weighting the node
             # node that creates most of new pairs is the best
