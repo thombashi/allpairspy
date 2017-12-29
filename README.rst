@@ -16,7 +16,6 @@
 
 AllPairs test combinations generator 
 ------------------------------------------------
-
 AllPairs is an open source test combinations generator written in 
 Python, developed and maintained by MetaCommunications Engineering.
 The generator allows one to create a set of tests using "pairwise 
@@ -28,15 +27,10 @@ For more info on pairwise testing see http://www.pairwise.org.
 
 Features
 --------
-
 * Produces good enough dataset.
-
 * Pythonic, iterator-style enumeration interface.
-
 * Allows to filter out "invalid" combinations during search for the next combination.
-
 * Allows to exclude "previously tested" pairs/combinations.
-
 * Goes beyond pairs! If/when required can generate n-wise combinations.
 
 
@@ -202,7 +196,6 @@ Pairs returned as ``collections.namedtuple`` instances.
 
 Parameterized testing with pairwise by using py.test
 ====================================================================
-
 :Sample Code:
     .. code:: python
 
@@ -260,7 +253,6 @@ Other examples could be found in `examples <https://github.com/thombashi/allpair
 
 Installation
 ------------
-
 .. code::
 
     pip install allpairspy
@@ -268,7 +260,6 @@ Installation
 
 Known issues
 ------------
-
 * Not optimal - there are tools that can create smaller set covering
   all the pairs. However, they are missing some other important 
   features and/or do not integrate well with Python.
@@ -279,7 +270,6 @@ Known issues
 
 Dependencies
 ------------
-
-Python 2.7+ or 3.3+
+Python 2.7+ or 3.4+
 
 - `six <https://pypi.python.org/pypi/six/>`__
