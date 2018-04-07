@@ -14,11 +14,11 @@
     :target: https://coveralls.io/github/thombashi/allpairspy?branch=master
 
 
-AllPairs test combinations generator 
+AllPairs test combinations generator
 ------------------------------------------------
-AllPairs is an open source test combinations generator written in 
+AllPairs is an open source test combinations generator written in
 Python, developed and maintained by MetaCommunications Engineering.
-The generator allows one to create a set of tests using "pairwise 
+The generator allows one to create a set of tests using "pairwise
 combinations" method, reducing a number of combinations of variables
 into a lesser set that covers most situations.
 
@@ -41,7 +41,7 @@ Basic Usage
 ==================
 :Sample Code:
     .. code:: python
-        
+
         from allpairspy import AllPairs
 
         parameters = [
@@ -57,7 +57,7 @@ Basic Usage
             print("{:2d}: {}".format(i, pairs))
 
 :Output:
-    .. code:: 
+    .. code::
 
         PAIRWISE:
          0: ['Brand X', '98', 'Internal', 'Salaried', 6]
@@ -135,7 +135,7 @@ You can restrict pairs by setting filtering function to ``filter_func`` at
             print("{:2d}: {}".format(i, pairs))
 
 :Output:
-    .. code:: 
+    .. code::
 
         PAIRWISE:
          0: ['Brand X', '98', 'Internal', 'Salaried', 6]
@@ -177,7 +177,7 @@ Pairs returned as ``collections.namedtuple`` instances.
             print("{:2d}: {}".format(i, pairs))
 
 :Sample Code:
-    .. code:: 
+    .. code::
 
         PAIRWISE:
          0: Pairs(brand='Brand X', os='98', minute=15)
@@ -206,7 +206,7 @@ Parameterized testing with pairwise by using py.test
             # do something
             return True
 
-        class Test__parameterized(object):
+        class TestParameterized(object):
 
             @pytest.mark.parametrize(
                 ["brand", "operating_system", "minute"],
@@ -221,7 +221,7 @@ Parameterized testing with pairwise by using py.test
                 assert function_to_be_tested(brand, operating_system, minute)
 
 :Output:
-    .. code:: 
+    .. code::
 
         $ py.test test_parameterize.py -v
         ============================================================================ test session starts =============================================================================
@@ -261,7 +261,7 @@ Installation
 Known issues
 ------------
 * Not optimal - there are tools that can create smaller set covering
-  all the pairs. However, they are missing some other important 
+  all the pairs. However, they are missing some other important
   features and/or do not integrate well with Python.
 
 * Lousy written filtering function may lead to full permutation of parameters.
