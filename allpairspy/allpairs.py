@@ -1,23 +1,13 @@
 # encoding: utf-8
 
-from collections import (
-    namedtuple,
-    OrderedDict,
-)
+from collections import OrderedDict, namedtuple
 from functools import cmp_to_key
 from itertools import combinations
 
 import six
+from six.moves import range, reduce
 
-from six.moves import (
-    range,
-    reduce,
-)
-
-from .pairs_storage import (
-    PairsStorage,
-    key,
-)
+from .pairs_storage import PairsStorage, key
 
 
 class Item(object):

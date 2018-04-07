@@ -6,8 +6,8 @@
 
 from collections import OrderedDict
 
-from allpairspy import AllPairs
 import pytest
+from allpairspy import AllPairs
 
 
 class Test_pairewise_OrderedDict(object):
