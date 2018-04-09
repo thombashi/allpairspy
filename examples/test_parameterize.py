@@ -7,7 +7,10 @@
 
 from __future__ import print_function, unicode_literals
 
+from collections import OrderedDict
+
 import pytest
+
 from allpairspy import AllPairs
 
 
@@ -17,16 +20,14 @@ def function_to_be_tested(brand, operating_system, minute):
     return True
 
 
-class Test__parameterized(object):
+class TestParameterized(object):
 
-    @pytest.mark.parametrize(
-        ["brand", "operating_system", "minute"],
-        [
-            value_list for value_list in AllPairs([
-                ["Brand X", "Brand Y"],
-                ["98", "NT", "2000", "XP"],
-                [10, 15, 30, 60]
-            ])
+    @pytest.mark.parametrize(["brand", "operating_system", "minute"], [
+        value_list for value_list in AllPairs([
+            ["Brand X", "Brand Y"],
+            ["98", "NT", "2000", "XP"],
+            [10, 15, 30, 60]
         ])
+    ])
     def test(self, brand, operating_system, minute):
         assert function_to_be_tested(brand, operating_system, minute)
