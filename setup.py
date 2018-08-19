@@ -62,6 +62,7 @@ into a lesser set that covers most situations.
     setup_requires=PYTEST_RUNNER_REQUIRES,
     tests_require=tests_requires,
     extras_require={
+        "build": "wheel",
         "release": "releasecmd>=0.0.12",
         "test": tests_requires,
     },
