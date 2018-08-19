@@ -13,25 +13,35 @@ REQUIREMENT_DIR = "requirements"
 needs_pytest = set(["pytest", "test", "ptr"]).intersection(sys.argv)
 pytest_runner = ["pytest-runner"] if needs_pytest else []
 
+pkg_info = {}
+
+
+with open(os.path.join(MODULE_NAME, "__version__.py")) as f:
+    exec(f.read(), pkg_info)
+
 with open(os.path.join(REQUIREMENT_DIR, "requirements.txt")) as f:
     install_requires = [line.strip() for line in f if line.strip()]
 
 with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
     tests_requires = [line.strip() for line in f if line.strip()]
 
+
 setuptools.setup(
     name=MODULE_NAME,
-    version="2.4.0",
+    version=pkg_info["__version__"],
     description="Pairwise test combinations generator",
     long_description="""Pairwise (aka 'all-pairs') test combinations generator written in
 Python. Allows one to create a set of tests using 'pairwise combinations' method,
 reducing a number of combinations of variables
 into a lesser set that covers most situations.
 """,
-    author="Tsuyoshi Hombashi",
-    author_email="tsuyoshi.hombashi@gmail.com",
+    author=pkg_info["__author__"],
+    author_email=pkg_info["__author_email__"],
+    maintainer=pkg_info["__maintainer__"],
+    maintainer_email=pkg_info["__maintainer_email__"],
     url=REPOSITORY_URL,
     install_requires=install_requires,
+    license=pkg_info["__license__"],
     tests_require=tests_requires,
     extras_require={
         "test": tests_requires,
