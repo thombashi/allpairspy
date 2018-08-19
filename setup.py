@@ -16,6 +16,15 @@ pytest_runner = ["pytest-runner"] if needs_pytest else []
 pkg_info = {}
 
 
+def get_release_command_class():
+    try:
+        from releasecmd import ReleaseCommand
+    except ImportError:
+        return {}
+
+    return {"release": ReleaseCommand}
+
+
 with open(os.path.join(MODULE_NAME, "__version__.py")) as f:
     exec(f.read(), pkg_info)
 
@@ -51,6 +60,7 @@ into a lesser set that covers most situations.
     setup_requires=pytest_runner,
     tests_require=tests_requires,
     extras_require={
+        "release": "releasecmd>=0.0.12",
         "test": tests_requires,
     },
 
@@ -75,4 +85,5 @@ into a lesser set that covers most situations.
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Software Development :: Testing",
         "Topic :: Utilities",
-    ])
+    ],
+    cmdclass=get_release_command_class())
