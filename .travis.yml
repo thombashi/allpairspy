@@ -1,31 +1,31 @@
 language: python
 
 matrix:
-  include:
-    - python: 2.7
-      env: TOXENV=python2.7
-    - python: 3.4
-      env: TOXENV=python3.4
-    - python: 3.5
-      env: TOXENV=python3.5
-    - python: 3.6
-      env: TOXENV=python3.6
+    include:
+        - python: 2.7
+          env: TOXENV=python2.7
+        - python: 3.4
+          env: TOXENV=python3.4
+        - python: 3.5
+          env: TOXENV=python3.5
+        - python: 3.6
+          env: TOXENV=python3.6
 
 os:
-  - linux
+    - linux
 
 install:
-  - pip install setuptools --upgrade
-  - pip install tox
-  - pip install coveralls
+    - pip install setuptools --upgrade
+    - pip install tox
+    - pip install coveralls
 
-script: 
-  - tox
-  - python setup.py test --addopts "-v --cov allpairspy --cov-report term-missing"
+script:
+    - tox
+    - python setup.py test --addopts "-v --cov allpairspy --cov-report term-missing"
 
 after_success:
-  - coveralls
+    - coveralls
 
 notifications:
-  slack:
-    secure: buhKHDpBl9aOddo6uC6wZH7qMMwaz/QF7i6VKxxslRPQWdXTVkeWDvacDRyVW6dhXHPMPr+HDeELsqNi3VoQuBWcXWmr+vNry2lGaXqRJCPQ/vW0Nn95RyZ9PogJ+XiO8OwRXujnWqUETynHh3VnOJWskHfcCanZDl4TfSadWQclEZ+r0viXuoBPwzSNkqu/PIHQl9lG47+x1Quh1yq9uQ87JiGIHvZ1I2FxibpSVEW35GBxWfwo0YFH1MZYz6Lpvc9gd7i5knygvjgkvCbwVEhPy9fC+TCo6nMBh7mA9YH0RETtUs9f3vwgZHBrtMaSCsLfWq5s/+Tj7fkcQ0IBQSx9uCeIKl1GSqgK5I3vLwH4icb3txxLVxLcMJNEJxpfcPUUWFb6CYBbRndkakMFEw5uyHwDbN6PBqWqAyMfqbfGOR38bQGQTcz7onw5nNK5gNHGJ3eMRLzrid+c+BTPbrcFrX4KX8rOLnzkyTWsbJrRVfFqqIPQW+XrDLlcOgg8L1xrBBlMlGYkwuOfsgVZck8Iexv6JRpSECABBCcu/AlYx3lwfxqNqKZU+OQ1/sOv+mri7SXajSumoaSiX/0wL7mhnShAu9F6ZqEMry+evkR30ePOKz1nSKzTiQk0nmbKH2WdbZbS/kCJXFCYZTCzUqKPvk15G46vDabTy8WQCLk=
+    slack:
+        secure: buhKHDpBl9aOddo6uC6wZH7qMMwaz/QF7i6VKxxslRPQWdXTVkeWDvacDRyVW6dhXHPMPr+HDeELsqNi3VoQuBWcXWmr+vNry2lGaXqRJCPQ/vW0Nn95RyZ9PogJ+XiO8OwRXujnWqUETynHh3VnOJWskHfcCanZDl4TfSadWQclEZ+r0viXuoBPwzSNkqu/PIHQl9lG47+x1Quh1yq9uQ87JiGIHvZ1I2FxibpSVEW35GBxWfwo0YFH1MZYz6Lpvc9gd7i5knygvjgkvCbwVEhPy9fC+TCo6nMBh7mA9YH0RETtUs9f3vwgZHBrtMaSCsLfWq5s/+Tj7fkcQ0IBQSx9uCeIKl1GSqgK5I3vLwH4icb3txxLVxLcMJNEJxpfcPUUWFb6CYBbRndkakMFEw5uyHwDbN6PBqWqAyMfqbfGOR38bQGQTcz7onw5nNK5gNHGJ3eMRLzrid+c+BTPbrcFrX4KX8rOLnzkyTWsbJrRVfFqqIPQW+XrDLlcOgg8L1xrBBlMlGYkwuOfsgVZck8Iexv6JRpSECABBCcu/AlYx3lwfxqNqKZU+OQ1/sOv+mri7SXajSumoaSiX/0wL7mhnShAu9F6ZqEMry+evkR30ePOKz1nSKzTiQk0nmbKH2WdbZbS/kCJXFCYZTCzUqKPvk15G46vDabTy8WQCLk=
