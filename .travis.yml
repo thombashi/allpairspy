@@ -28,13 +28,10 @@ matrix:
           env: TOXENV=python3.7
 
 install:
-    - pip install setuptools --upgrade
-    - pip install tox
-    - pip install coveralls
+    - bash -x .travis/install.sh
 
 script:
-    - tox
-    - python setup.py test --addopts "-v --cov allpairspy --cov-report term-missing"
+    - bash -x .travis/run_test.sh
 
 after_success:
     - coveralls
