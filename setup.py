@@ -6,6 +6,8 @@ import sys
 import setuptools
 
 
+MODULE_NAME = "allpairspy"
+REPOSITORY_URL = "https://github.com/thombashi/{:s}".format(MODULE_NAME)
 REQUIREMENT_DIR = "requirements"
 
 needs_pytest = set(["pytest", "test", "ptr"]).intersection(sys.argv)
@@ -18,7 +20,7 @@ with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
     tests_requires = [line.strip() for line in f if line.strip()]
 
 setuptools.setup(
-    name="allpairspy",
+    name=MODULE_NAME,
     version="2.4.0",
     description="Pairwise test combinations generator",
     long_description="""Pairwise (aka 'all-pairs') test combinations generator written in
@@ -28,7 +30,7 @@ into a lesser set that covers most situations.
 """,
     author="Tsuyoshi Hombashi",
     author_email="tsuyoshi.hombashi@gmail.com",
-    url="https://github.com/thombashi/allpairspy",
+    url=REPOSITORY_URL,
     install_requires=install_requires,
     tests_require=tests_requires,
     extras_require={
