@@ -4,7 +4,7 @@
 .. image:: https://img.shields.io/pypi/pyversions/allpairspy.svg
    :target: https://pypi.python.org/pypi/allpairspy
 
-.. image:: https://img.shields.io/travis/thombashi/allpairspy/master.svg?label=Linux
+.. image:: https://img.shields.io/travis/thombashi/allpairspy/master.svg?label=Linux/macOS
     :target: https://travis-ci.org/thombashi/allpairspy
 
 .. image:: https://img.shields.io/appveyor/ci/thombashi/allpairspy/master.svg?label=Windows
@@ -49,7 +49,7 @@ Basic Usage
             ["98", "NT", "2000", "XP"],
             ["Internal", "Modem"],
             ["Salaried", "Hourly", "Part-Time", "Contr."],
-            [6, 10, 15, 30, 60]
+            [6, 10, 15, 30, 60],
         ]
 
         print("PAIRWISE:")
