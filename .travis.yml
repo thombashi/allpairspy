@@ -27,6 +27,10 @@ matrix:
           sudo: required
           env: TOXENV=python3.7
 
+        - os: osx
+          language: generic
+          env: TOXENV=python3.6
+
 install:
     - bash -x .travis/install.sh
 
