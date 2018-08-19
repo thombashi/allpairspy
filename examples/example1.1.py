@@ -15,7 +15,7 @@ parameters = [
     ["98", "NT", "2000", "XP"],
     ["Internal", "Modem"],
     ["Salaried", "Hourly", "Part-Time", "Contr."],
-    [6, 10, 15, 30, 60]
+    [6, 10, 15, 30, 60],
 ]
 # sample parameters are is taken from
 # http://www.stsc.hill.af.mil/consulting/sw_testing/improvement/cst.html

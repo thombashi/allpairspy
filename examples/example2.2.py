@@ -17,7 +17,7 @@ def is_valid_combination(values, names):
 
     """
     Should return True if combination is valid and False otherwise.
-    
+
     Dictionary that is passed here can be incomplete.
     To prevent search for unnecessary items filtering function
     is executed with found subset of data to validate it.
@@ -29,7 +29,7 @@ def is_valid_combination(values, names):
         # Contractors are billed in 30 min increments
         lambda d: "98" == d["os"] and "Brand Y" == d["brand"],
         lambda d: "XP" == d["os"] and "Brand X" == d["brand"],
-        lambda d: "Contr." == d["employee"] and d["increment"] < 30
+        lambda d: "Contr." == d["employee"] and d["increment"] < 30,
     ]
 
     for rule in rules:
@@ -49,13 +49,12 @@ parameters = [
     ("os", ["98", "NT", "2000", "XP"]),
     ("network", ["Internal", "Modem"]),
     ("employee", ["Salaried", "Hourly", "Part-Time", "Contr."]),
-    ("increment", [6, 10, 15, 30, 60])
+    ("increment", [6, 10, 15, 30, 60]),
 ]
 
 pairwise = AllPairs(
     [x[1] for x in parameters],
-    filter_func=lambda values: is_valid_combination(
-        values, [x[0] for x in parameters])
+    filter_func=lambda values: is_valid_combination(values, [x[0] for x in parameters]),
 )
 
 print("PAIRWISE:")

@@ -6,7 +6,6 @@ from six.moves import range
 
 
 class Node(object):
-
     @property
     def id(self):
         return self.__node_id
@@ -42,13 +41,10 @@ def key(items):
 
 
 class PairsStorage(object):
-
     def __init__(self, n):
         self.__n = n
         self.__nodes = {}
-        self.__combs_arr = [
-            set() for _i in range(n)
-        ]
+        self.__combs_arr = [set() for _i in range(n)]
 
     def __len__(self):
         return len(self.__combs_arr[-1])
@@ -78,4 +74,4 @@ class PairsStorage(object):
             curr = self.__nodes[id]
             curr.inc_counter()
             curr.in_.update(ids[:i])
-            curr.out.update(ids[i + 1:])
+            curr.out.update(ids[i + 1 :])

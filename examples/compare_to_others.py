@@ -45,10 +45,10 @@ def print_result(dimensions):
     print("{:s}: produces {:d} rows".format(" * ".join(header_list), n))
 
 
-print_result(((3, 4), ))
-print_result(((3, 13), ))
+print_result(((3, 4),))
+print_result(((3, 13),))
 print_result(((4, 15), (3, 17), (2, 29)))
 print_result(((4, 1), (3, 39), (2, 35)))
-print_result(((3, 100), ))
-print_result(((10, 20), ))
-print_result(((10, 10), ))
+print_result(((3, 100),))
+print_result(((10, 20),))
+print_result(((10, 10),))

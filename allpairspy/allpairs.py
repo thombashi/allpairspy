@@ -11,7 +11,6 @@ from .pairs_storage import PairsStorage, key
 
 
 class Item(object):
-
     @property
     def id(self):
         return self.__item_id
@@ -32,10 +31,7 @@ class Item(object):
 def get_max_combination_number(prameter_matrix, n):
     param_len_list = [len(value_list) for value_list in prameter_matrix]
 
-    return sum([
-        reduce(lambda x, y: x * y, z)
-        for z in combinations(param_len_list, n)
-    ])
+    return sum([reduce(lambda x, y: x * y, z) for z in combinations(param_len_list, n)])
 
 
 def cmp_item(lhs, rhs):
@@ -46,14 +42,11 @@ def cmp_item(lhs, rhs):
 
 
 class AllPairs(object):
-
     @property
     def Pairs(self):
         return self.__Pairs
 
-    def __init__(
-            self, parameters, filter_func=lambda x: True,
-            previously_tested=None, n=2):
+    def __init__(self, parameters, filter_func=lambda x: True, previously_tested=None, n=2):
         """
         TODO: check that input arrays are:
             - (optional) has no duplicated values inside single array / or compress such values
@@ -73,18 +66,15 @@ class AllPairs(object):
         self.__pairs = PairsStorage(n)
 
         value_matrix = self.__extract_value_matrix(parameters)
-        self.__max_unique_pairs_expected = get_max_combination_number(
-            value_matrix, n)
-        self.__working_item_matrix = self.__get_working_item_matrix(
-            value_matrix)
+        self.__max_unique_pairs_expected = get_max_combination_number(value_matrix, n)
+        self.__working_item_matrix = self.__get_working_item_matrix(value_matrix)
 
         for arr in previously_tested:
             if not arr:
                 continue
 
             if len(arr) != len(self.__working_item_matrix):
-                raise RuntimeError(
-                    "previously tested combination is not complete")
+                raise RuntimeError("previously tested combination is not complete")
 
             if not self.__filter_func(arr):
                 raise ValueError("invalid tested combination is provided")
@@ -92,16 +82,15 @@ class AllPairs(object):
             tested = []
             for i, val in enumerate(arr):
                 idxs = [
-                    Item(item.id, 0)
-                    for item in self.__working_item_matrix[i]
-                    if item.value == val
+                    Item(item.id, 0) for item in self.__working_item_matrix[i] if item.value == val
                 ]
 
                 if len(idxs) != 1:
                     raise ValueError(
                         "value from previously tested combination is not "
                         "found in the parameters or found more than "
-                        "once")
+                        "once"
+                    )
 
                 tested.append(idxs[0])
 
@@ -143,13 +132,11 @@ class AllPairs(object):
                     continue
                 direction = 0
             else:
-                raise ValueError(
-                    "next(): unknown 'direction' code '{}'".format(direction))
+                raise ValueError("next(): unknown 'direction' code '{}'".format(direction))
 
             chosen_values_arr[i] = self.__working_item_matrix[i][indexes[i]]
 
-            if self.__filter_func(
-                    self.__get_values_array(chosen_values_arr[:i + 1])):
+            if self.__filter_func(self.__get_values_array(chosen_values_arr[: i + 1])):
                 assert direction > -1
                 direction = 1
             else:
@@ -172,8 +159,7 @@ class AllPairs(object):
         if isinstance(value, OrderedDict):
             for parameter_list in six.itervalues(value):
                 if not parameter_list:
-                    raise ValueError(
-                        "each parameter arrays must have at least one item")
+                    raise ValueError("each parameter arrays must have at least one item")
 
             return
 
@@ -182,8 +168,7 @@ class AllPairs(object):
 
         for parameter_list in value:
             if not parameter_list:
-                raise ValueError(
-                    "each parameter arrays must have at least one item")
+                raise ValueError("each parameter arrays must have at least one item")
 
     def __resort_working_array(self, chosen_values_arr, num):
         for item in self.__working_item_matrix[num]:
@@ -192,10 +177,8 @@ class AllPairs(object):
             new_combs = [
                 # numbers of new combinations to be created if this item is
                 # appended to array
-                set([
-                    key(z) for z in combinations(
-                        chosen_values_arr + [item], i + 1)
-                ]) - self.__pairs.get_combs()[i]
+                set([key(z) for z in combinations(chosen_values_arr + [item], i + 1)])
+                - self.__pairs.get_combs()[i]
                 for i in range(0, self.__n)
             ]
 
@@ -205,13 +188,11 @@ class AllPairs(object):
 
             # less used outbound connections most likely to produce more new
             # pairs while search continues
-            item.weights += [
-                len(data_node.out)
-            ] + [
-                len(x) for x in reversed(new_combs[:-1])
-            ] + [
-                -data_node.counter  # less used node is better
-            ]
+            item.weights += (
+                [len(data_node.out)]
+                + [len(x) for x in reversed(new_combs[:-1])]
+                + [-data_node.counter]  # less used node is better
+            )
 
             # otherwise we will prefer node with most of free inbound
             # connections; somehow it works out better ;)

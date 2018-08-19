@@ -11,17 +11,14 @@ from allpairspy import AllPairs
 
 
 class Test_pairewise_OrderedDict(object):
-
     def test_normal(self):
-        parameters = OrderedDict({
-            "brand": ["Brand X", "Brand Y"],
-            "os": ["NT", "2000", "XP"],
-            "minute": [15, 30, 60],
-        })
+        parameters = OrderedDict(
+            {"brand": ["Brand X", "Brand Y"], "os": ["NT", "2000", "XP"], "minute": [15, 30, 60]}
+        )
 
         for pairs in AllPairs(parameters):
-            assert pairs.brand == 'Brand X'
-            assert pairs.os == 'NT'
+            assert pairs.brand == "Brand X"
+            assert pairs.os == "NT"
             assert pairs.minute == 15
             break
 
@@ -41,28 +38,28 @@ class Test_pairewise_list(object):
         ]
 
         assert list(AllPairs(parameters)) == [
-            ['Brand X', '98', 'Internal', 'Salaried', 6],
-            ['Brand Y', 'NT', 'Modem', 'Hourly', 6],
-            ['Brand Y', '2000', 'Internal', 'Part-Time', 10],
-            ['Brand X', 'XP', 'Modem', 'Contr.', 10],
-            ['Brand X', '2000', 'Modem', 'Part-Time', 15],
-            ['Brand Y', 'XP', 'Internal', 'Hourly', 15],
-            ['Brand Y', '98', 'Modem', 'Salaried', 30],
-            ['Brand X', 'NT', 'Internal', 'Contr.', 30],
-            ['Brand X', '98', 'Internal', 'Hourly', 60],
-            ['Brand Y', '2000', 'Modem', 'Contr.', 60],
-            ['Brand Y', 'NT', 'Modem', 'Salaried', 60],
-            ['Brand Y', 'XP', 'Modem', 'Part-Time', 60],
-            ['Brand Y', '2000', 'Modem', 'Hourly', 30],
-            ['Brand Y', '98', 'Modem', 'Contr.', 15],
-            ['Brand Y', 'XP', 'Modem', 'Salaried', 15],
-            ['Brand Y', 'NT', 'Modem', 'Part-Time', 15],
-            ['Brand Y', 'XP', 'Modem', 'Part-Time', 30],
-            ['Brand Y', '98', 'Modem', 'Part-Time', 6],
-            ['Brand Y', '2000', 'Modem', 'Salaried', 6],
-            ['Brand Y', '98', 'Modem', 'Salaried', 10],
-            ['Brand Y', 'XP', 'Modem', 'Contr.', 6],
-            ['Brand Y', 'NT', 'Modem', 'Hourly', 10]
+            ["Brand X", "98", "Internal", "Salaried", 6],
+            ["Brand Y", "NT", "Modem", "Hourly", 6],
+            ["Brand Y", "2000", "Internal", "Part-Time", 10],
+            ["Brand X", "XP", "Modem", "Contr.", 10],
+            ["Brand X", "2000", "Modem", "Part-Time", 15],
+            ["Brand Y", "XP", "Internal", "Hourly", 15],
+            ["Brand Y", "98", "Modem", "Salaried", 30],
+            ["Brand X", "NT", "Internal", "Contr.", 30],
+            ["Brand X", "98", "Internal", "Hourly", 60],
+            ["Brand Y", "2000", "Modem", "Contr.", 60],
+            ["Brand Y", "NT", "Modem", "Salaried", 60],
+            ["Brand Y", "XP", "Modem", "Part-Time", 60],
+            ["Brand Y", "2000", "Modem", "Hourly", 30],
+            ["Brand Y", "98", "Modem", "Contr.", 15],
+            ["Brand Y", "XP", "Modem", "Salaried", 15],
+            ["Brand Y", "NT", "Modem", "Part-Time", 15],
+            ["Brand Y", "XP", "Modem", "Part-Time", 30],
+            ["Brand Y", "98", "Modem", "Part-Time", 6],
+            ["Brand Y", "2000", "Modem", "Salaried", 6],
+            ["Brand Y", "98", "Modem", "Salaried", 10],
+            ["Brand Y", "XP", "Modem", "Contr.", 6],
+            ["Brand Y", "NT", "Modem", "Hourly", 10],
         ]
 
 
@@ -79,33 +76,33 @@ class Test_triplewise(object):
         ]
 
         assert list(AllPairs(parameters, n=3)) == [
-            ['Brand X', '98', 'Internal', 'Salaried', 6],
-            ['Brand Y', 'NT', 'Modem', 'Hourly', 6],
-            ['Brand Y', '2000', 'Modem', 'Part-Time', 10],
-            ['Brand X', 'XP', 'Internal', 'Contr.', 10],
-            ['Brand X', 'XP', 'Modem', 'Part-Time', 6],
-            ['Brand Y', '2000', 'Internal', 'Hourly', 15],
-            ['Brand Y', 'NT', 'Internal', 'Salaried', 10],
-            ['Brand X', '98', 'Modem', 'Contr.', 15],
-            ['Brand X', '98', 'Modem', 'Hourly', 10],
-            ['Brand Y', 'NT', 'Modem', 'Contr.', 30],
-            ['Brand X', 'XP', 'Internal', 'Hourly', 30],
-            ['Brand X', '2000', 'Modem', 'Salaried', 30],
-            ['Brand Y', '2000', 'Internal', 'Contr.', 6],
-            ['Brand Y', 'NT', 'Internal', 'Part-Time', 60],
-            ['Brand Y', 'XP', 'Modem', 'Salaried', 15],
-            ['Brand X', '98', 'Modem', 'Part-Time', 60],
-            ['Brand X', 'XP', 'Modem', 'Salaried', 60],
-            ['Brand X', '2000', 'Internal', 'Part-Time', 15],
-            ['Brand X', '2000', 'Modem', 'Contr.', 60],
-            ['Brand X', '98', 'Modem', 'Salaried', 10],
-            ['Brand X', '98', 'Modem', 'Part-Time', 30],
-            ['Brand X', 'NT', 'Modem', 'Part-Time', 10],
-            ['Brand Y', 'NT', 'Modem', 'Salaried', 60],
-            ['Brand Y', 'NT', 'Modem', 'Hourly', 15],
-            ['Brand Y', 'NT', 'Modem', 'Hourly', 30],
-            ['Brand Y', 'NT', 'Modem', 'Hourly', 60],
-            ['Brand Y', 'NT', 'Modem', 'Hourly', 10],
+            ["Brand X", "98", "Internal", "Salaried", 6],
+            ["Brand Y", "NT", "Modem", "Hourly", 6],
+            ["Brand Y", "2000", "Modem", "Part-Time", 10],
+            ["Brand X", "XP", "Internal", "Contr.", 10],
+            ["Brand X", "XP", "Modem", "Part-Time", 6],
+            ["Brand Y", "2000", "Internal", "Hourly", 15],
+            ["Brand Y", "NT", "Internal", "Salaried", 10],
+            ["Brand X", "98", "Modem", "Contr.", 15],
+            ["Brand X", "98", "Modem", "Hourly", 10],
+            ["Brand Y", "NT", "Modem", "Contr.", 30],
+            ["Brand X", "XP", "Internal", "Hourly", 30],
+            ["Brand X", "2000", "Modem", "Salaried", 30],
+            ["Brand Y", "2000", "Internal", "Contr.", 6],
+            ["Brand Y", "NT", "Internal", "Part-Time", 60],
+            ["Brand Y", "XP", "Modem", "Salaried", 15],
+            ["Brand X", "98", "Modem", "Part-Time", 60],
+            ["Brand X", "XP", "Modem", "Salaried", 60],
+            ["Brand X", "2000", "Internal", "Part-Time", 15],
+            ["Brand X", "2000", "Modem", "Contr.", 60],
+            ["Brand X", "98", "Modem", "Salaried", 10],
+            ["Brand X", "98", "Modem", "Part-Time", 30],
+            ["Brand X", "NT", "Modem", "Part-Time", 10],
+            ["Brand Y", "NT", "Modem", "Salaried", 60],
+            ["Brand Y", "NT", "Modem", "Hourly", 15],
+            ["Brand Y", "NT", "Modem", "Hourly", 30],
+            ["Brand Y", "NT", "Modem", "Hourly", 60],
+            ["Brand Y", "NT", "Modem", "Hourly", 10],
         ]
 
 
@@ -127,31 +124,30 @@ class Test_pairewise_w_tested(object):
         ]
 
         assert list(AllPairs(parameters, previously_tested=tested)) == [
-            ['Brand Y', '2000', 'Modem', 'Salaried', 6],
-            ['Brand X', 'XP', 'Internal', 'Contr.', 6],
-            ['Brand Y', 'XP', 'Modem', 'Contr.', 30],
-            ['Brand X', '2000', 'Internal', 'Part-Time', 30],
-            ['Brand Y', '98', 'Internal', 'Salaried', 60],
-            ['Brand X', 'NT', 'Modem', 'Salaried', 60],
-            ['Brand Y', 'XP', 'Internal', 'Hourly', 15],
-            ['Brand Y', 'NT', 'Modem', 'Hourly', 30],
-            ['Brand Y', '2000', 'Modem', 'Part-Time', 15],
-            ['Brand Y', '2000', 'Modem', 'Contr.', 10],
-            ['Brand Y', 'XP', 'Modem', 'Salaried', 10],
-            ['Brand Y', '98', 'Modem', 'Part-Time', 6],
-            ['Brand Y', 'NT', 'Modem', 'Contr.', 15],
-            ['Brand Y', '98', 'Modem', 'Contr.', 30],
-            ['Brand Y', 'XP', 'Modem', 'Part-Time', 60],
-            ['Brand Y', '2000', 'Modem', 'Hourly', 60],
-            ['Brand Y', 'NT', 'Modem', 'Salaried', 30],
-            ['Brand Y', 'NT', 'Modem', 'Salaried', 15],
-            ['Brand Y', 'NT', 'Modem', 'Hourly', 6],
-            ['Brand Y', 'NT', 'Modem', 'Contr.', 60],
+            ["Brand Y", "2000", "Modem", "Salaried", 6],
+            ["Brand X", "XP", "Internal", "Contr.", 6],
+            ["Brand Y", "XP", "Modem", "Contr.", 30],
+            ["Brand X", "2000", "Internal", "Part-Time", 30],
+            ["Brand Y", "98", "Internal", "Salaried", 60],
+            ["Brand X", "NT", "Modem", "Salaried", 60],
+            ["Brand Y", "XP", "Internal", "Hourly", 15],
+            ["Brand Y", "NT", "Modem", "Hourly", 30],
+            ["Brand Y", "2000", "Modem", "Part-Time", 15],
+            ["Brand Y", "2000", "Modem", "Contr.", 10],
+            ["Brand Y", "XP", "Modem", "Salaried", 10],
+            ["Brand Y", "98", "Modem", "Part-Time", 6],
+            ["Brand Y", "NT", "Modem", "Contr.", 15],
+            ["Brand Y", "98", "Modem", "Contr.", 30],
+            ["Brand Y", "XP", "Modem", "Part-Time", 60],
+            ["Brand Y", "2000", "Modem", "Hourly", 60],
+            ["Brand Y", "NT", "Modem", "Salaried", 30],
+            ["Brand Y", "NT", "Modem", "Salaried", 15],
+            ["Brand Y", "NT", "Modem", "Hourly", 6],
+            ["Brand Y", "NT", "Modem", "Contr.", 60],
         ]
 
 
 class Test_pairewise_filter(object):
-
     def test_normal_example21(self):
         # example2.1.py
 
@@ -160,7 +156,7 @@ class Test_pairewise_filter(object):
             ["98", "NT", "2000", "XP"],
             ["Internal", "Modem"],
             ["Salaried", "Hourly", "Part-Time", "Contr."],
-            [6, 10, 15, 30, 60]
+            [6, 10, 15, 30, 60],
         ]
 
         def is_valid_combination(row):
@@ -187,24 +183,22 @@ class Test_pairewise_filter(object):
 
             return True
 
-        assert list(AllPairs(
-            parameters, filter_func=is_valid_combination)
-        ) == [
-            ['Brand X', '98', 'Internal', 'Salaried', 6],
-            ['Brand Y', 'NT', 'Modem', 'Hourly', 6],
-            ['Brand Y', '2000', 'Internal', 'Part-Time', 10],
-            ['Brand X', '2000', 'Modem', 'Contr.', 30],
-            ['Brand X', 'NT', 'Internal', 'Contr.', 60],
-            ['Brand Y', 'XP', 'Modem', 'Salaried', 60],
-            ['Brand X', '98', 'Modem', 'Part-Time', 15],
-            ['Brand Y', 'XP', 'Internal', 'Hourly', 15],
-            ['Brand Y', 'NT', 'Internal', 'Part-Time', 30],
-            ['Brand X', '2000', 'Modem', 'Hourly', 10],
-            ['Brand Y', 'XP', 'Modem', 'Contr.', 30],
-            ['Brand Y', '2000', 'Modem', 'Salaried', 15],
-            ['Brand Y', 'NT', 'Modem', 'Salaried', 10],
-            ['Brand Y', 'XP', 'Modem', 'Part-Time', 6],
-            ['Brand Y', '2000', 'Modem', 'Contr.', 60],
+        assert list(AllPairs(parameters, filter_func=is_valid_combination)) == [
+            ["Brand X", "98", "Internal", "Salaried", 6],
+            ["Brand Y", "NT", "Modem", "Hourly", 6],
+            ["Brand Y", "2000", "Internal", "Part-Time", 10],
+            ["Brand X", "2000", "Modem", "Contr.", 30],
+            ["Brand X", "NT", "Internal", "Contr.", 60],
+            ["Brand Y", "XP", "Modem", "Salaried", 60],
+            ["Brand X", "98", "Modem", "Part-Time", 15],
+            ["Brand Y", "XP", "Internal", "Hourly", 15],
+            ["Brand Y", "NT", "Internal", "Part-Time", 30],
+            ["Brand X", "2000", "Modem", "Hourly", 10],
+            ["Brand Y", "XP", "Modem", "Contr.", 30],
+            ["Brand Y", "2000", "Modem", "Salaried", 15],
+            ["Brand Y", "NT", "Modem", "Salaried", 10],
+            ["Brand Y", "XP", "Modem", "Part-Time", 6],
+            ["Brand Y", "2000", "Modem", "Contr.", 60],
         ]
 
     def test_normal_example22(self):
@@ -215,7 +209,7 @@ class Test_pairewise_filter(object):
             ("os", ["98", "NT", "2000", "XP"]),
             ("network", ["Internal", "Modem"]),
             ("employee", ["Salaried", "Hourly", "Part-Time", "Contr."]),
-            ("increment", [6, 10, 15, 30, 60])
+            ("increment", [6, 10, 15, 30, 60]),
         ]
 
         def is_valid_combination(values, names):
@@ -236,7 +230,7 @@ class Test_pairewise_filter(object):
                 # Contractors are billed in 30 min increments
                 lambda d: "98" == d["os"] and "Brand Y" == d["brand"],
                 lambda d: "XP" == d["os"] and "Brand X" == d["brand"],
-                lambda d: "Contr." == d["employee"] and d["increment"] < 30
+                lambda d: "Contr." == d["employee"] and d["increment"] < 30,
             ]
 
             for rule in rules:
@@ -248,24 +242,25 @@ class Test_pairewise_filter(object):
 
             return True
 
-        assert list(AllPairs(
-            [x[1] for x in parameters],
-            filter_func=lambda values: is_valid_combination(
-                values, [x[0] for x in parameters])
-        )) == [
-            ['Brand X', '98', 'Internal', 'Salaried', 6],
-            ['Brand Y', 'NT', 'Modem', 'Hourly', 6],
-            ['Brand Y', '2000', 'Internal', 'Part-Time', 10],
-            ['Brand X', '2000', 'Modem', 'Contr.', 30],
-            ['Brand X', 'NT', 'Internal', 'Contr.', 60],
-            ['Brand Y', 'XP', 'Modem', 'Salaried', 60],
-            ['Brand X', '98', 'Modem', 'Part-Time', 15],
-            ['Brand Y', 'XP', 'Internal', 'Hourly', 15],
-            ['Brand Y', 'NT', 'Internal', 'Part-Time', 30],
-            ['Brand X', '2000', 'Modem', 'Hourly', 10],
-            ['Brand Y', 'XP', 'Modem', 'Contr.', 30],
-            ['Brand Y', '2000', 'Modem', 'Salaried', 15],
-            ['Brand Y', 'NT', 'Modem', 'Salaried', 10],
-            ['Brand Y', 'XP', 'Modem', 'Part-Time', 6],
-            ['Brand Y', '2000', 'Modem', 'Contr.', 60],
+        assert list(
+            AllPairs(
+                [x[1] for x in parameters],
+                filter_func=lambda values: is_valid_combination(values, [x[0] for x in parameters]),
+            )
+        ) == [
+            ["Brand X", "98", "Internal", "Salaried", 6],
+            ["Brand Y", "NT", "Modem", "Hourly", 6],
+            ["Brand Y", "2000", "Internal", "Part-Time", 10],
+            ["Brand X", "2000", "Modem", "Contr.", 30],
+            ["Brand X", "NT", "Internal", "Contr.", 60],
+            ["Brand Y", "XP", "Modem", "Salaried", 60],
+            ["Brand X", "98", "Modem", "Part-Time", 15],
+            ["Brand Y", "XP", "Internal", "Hourly", 15],
+            ["Brand Y", "NT", "Internal", "Part-Time", 30],
+            ["Brand X", "2000", "Modem", "Hourly", 10],
+            ["Brand Y", "XP", "Modem", "Contr.", 30],
+            ["Brand Y", "2000", "Modem", "Salaried", 15],
+            ["Brand Y", "NT", "Modem", "Salaried", 10],
+            ["Brand Y", "XP", "Modem", "Part-Time", 6],
+            ["Brand Y", "2000", "Modem", "Contr.", 60],
         ]

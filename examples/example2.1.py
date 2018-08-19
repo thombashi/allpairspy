@@ -46,7 +46,7 @@ parameters = [
     ["98", "NT", "2000", "XP"],
     ["Internal", "Modem"],
     ["Salaried", "Hourly", "Part-Time", "Contr."],
-    [6, 10, 15, 30, 60]
+    [6, 10, 15, 30, 60],
 ]
 
 print("PAIRWISE:")
