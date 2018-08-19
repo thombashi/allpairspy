@@ -10,10 +10,11 @@ MODULE_NAME = "allpairspy"
 REPOSITORY_URL = "https://github.com/thombashi/{:s}".format(MODULE_NAME)
 REQUIREMENT_DIR = "requirements"
 
-needs_pytest = set(["pytest", "test", "ptr"]).intersection(sys.argv)
-pytest_runner = ["pytest-runner"] if needs_pytest else []
-
 pkg_info = {}
+
+
+def need_pytest():
+    return set(["pytest", "test", "ptr"]).intersection(sys.argv)
 
 
 def get_release_command_class():
@@ -34,6 +35,7 @@ with open(os.path.join(REQUIREMENT_DIR, "requirements.txt")) as f:
 with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
     tests_requires = [line.strip() for line in f if line.strip()]
 
+PYTEST_RUNNER_REQUIRES = ["pytest-runner"] if need_pytest() else []
 
 setuptools.setup(
     name=MODULE_NAME,
@@ -57,7 +59,7 @@ into a lesser set that covers most situations.
     },
 
     install_requires=install_requires,
-    setup_requires=pytest_runner,
+    setup_requires=PYTEST_RUNNER_REQUIRES,
     tests_require=tests_requires,
     extras_require={
         "release": "releasecmd>=0.0.12",
