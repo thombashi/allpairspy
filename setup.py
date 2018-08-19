@@ -38,6 +38,10 @@ into a lesser set that covers most situations.
     },
     setup_requires=pytest_runner,
     packages=setuptools.find_packages(exclude=["test*"]),
+    project_urls={
+        "Tracker": "{:s}/issues".format(REPOSITORY_URL),
+    },
+
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
