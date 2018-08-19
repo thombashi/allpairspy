@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-from datetime import datetime
-
 
 __author__ = "MetaCommunications Engineering"
 __author_email__ = "metacomm@users.sourceforge.net"

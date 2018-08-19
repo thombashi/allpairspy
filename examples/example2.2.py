@@ -8,8 +8,6 @@ Demonstrates how to use named parameters
 
 from __future__ import print_function
 
-import functools
-
 from allpairspy import AllPairs
 
 
