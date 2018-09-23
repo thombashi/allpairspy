@@ -2,7 +2,7 @@
     :target: https://badge.fury.io/py/allpairspy
 
 .. image:: https://img.shields.io/pypi/pyversions/allpairspy.svg
-   :target: https://pypi.python.org/pypi/allpairspy
+   :target: https://pypi.org/project/allpairspy
 
 .. image:: https://img.shields.io/travis/thombashi/allpairspy/master.svg?label=Linux/macOS
     :target: https://travis-ci.org/thombashi/allpairspy
@@ -270,4 +270,4 @@ Dependencies
 ------------
 Python 2.7+ or 3.4+
 
-- `six <https://pypi.python.org/pypi/six/>`__
+- `six <https://pypi.org/project/six/>`__
