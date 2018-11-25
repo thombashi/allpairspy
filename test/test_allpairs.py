@@ -6,7 +6,6 @@
 
 from collections import OrderedDict
 
-import pytest
 from allpairspy import AllPairs
 
 
