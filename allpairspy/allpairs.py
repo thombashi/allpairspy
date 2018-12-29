@@ -42,10 +42,6 @@ def cmp_item(lhs, rhs):
 
 
 class AllPairs(object):
-    @property
-    def Pairs(self):
-        return self.__Pairs
-
     def __init__(self, parameters, filter_func=lambda x: True, previously_tested=None, n=2):
         """
         TODO: check that input arrays are:
