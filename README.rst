@@ -1,13 +1,20 @@
+**allpairspy**
+
+Forked from `bayandin/allpairs <https://github.com/bayandin/allpairs>`__
+
+.. contents:: Table of Contents
+   :depth: 2
+
 .. image:: https://badge.fury.io/py/allpairspy.svg
     :target: https://badge.fury.io/py/allpairspy
 
 .. image:: https://img.shields.io/pypi/pyversions/allpairspy.svg
    :target: https://pypi.org/project/allpairspy
 
-.. image:: https://img.shields.io/travis/thombashi/allpairspy/master.svg?label=Linux/macOS
+.. image:: https://img.shields.io/travis/thombashi/allpairspy/master.svg?label=Linux/macOS-CI
     :target: https://travis-ci.org/thombashi/allpairspy
 
-.. image:: https://img.shields.io/appveyor/ci/thombashi/allpairspy/master.svg?label=Windows
+.. image:: https://img.shields.io/appveyor/ci/thombashi/allpairspy/master.svg?label=Windows-CI
     :target: https://ci.appveyor.com/project/thombashi/allpairspy
 
 .. image:: https://coveralls.io/repos/github/thombashi/allpairspy/badge.svg?branch=master
@@ -30,7 +37,6 @@ Features
 * Produces good enough dataset.
 * Pythonic, iterator-style enumeration interface.
 * Allows to filter out "invalid" combinations during search for the next combination.
-* Allows to exclude "previously tested" pairs/combinations.
 * Goes beyond pairs! If/when required can generate n-wise combinations.
 
 
