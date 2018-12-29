@@ -136,7 +136,7 @@ class AllPairs(object):
 
             chosen_values_arr[i] = self.__working_item_matrix[i][indexes[i]]
 
-            if self.__filter_func(self.__get_values_array(chosen_values_arr[: i + 1])):
+            if self.__filter_func(self.__get_values(chosen_values_arr[: i + 1])):
                 assert direction > -1
                 direction = 1
             else:
@@ -209,7 +209,8 @@ class AllPairs(object):
             for param_idx, value_list in enumerate(parameter_matrix)
         ]
 
-    def __get_values_array(self, item_list):
+    @staticmethod
+    def __get_values(item_list):
         return [item.value for item in item_list]
 
     def __get_iteration_value(self, item_list):
