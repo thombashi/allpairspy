@@ -110,7 +110,7 @@ class AllPairs(object):
             raise StopIteration()
 
         previous_unique_pairs_count = len(self.__pairs)
-        chosen_values_arr = [None] * len(self.__working_item_matrix)
+        chosen_item_list = [None] * len(self.__working_item_matrix)
         indexes = [None] * len(self.__working_item_matrix)
 
         direction = 1
@@ -119,7 +119,7 @@ class AllPairs(object):
         while -1 < i < len(self.__working_item_matrix):
             if direction == 1:
                 # move forward
-                self.__resort_working_array(chosen_values_arr[:i], i)
+                self.__resort_working_array(chosen_item_list[:i], i)
                 indexes[i] = 0
             elif direction == 0 or direction == -1:
                 # scan current array or go back
@@ -134,26 +134,26 @@ class AllPairs(object):
             else:
                 raise ValueError("next(): unknown 'direction' code '{}'".format(direction))
 
-            chosen_values_arr[i] = self.__working_item_matrix[i][indexes[i]]
+            chosen_item_list[i] = self.__working_item_matrix[i][indexes[i]]
 
-            if self.__filter_func(self.__get_values(chosen_values_arr[: i + 1])):
+            if self.__filter_func(self.__get_values(chosen_item_list[: i + 1])):
                 assert direction > -1
                 direction = 1
             else:
                 direction = 0
             i += direction
 
-        if len(self.__working_item_matrix) != len(chosen_values_arr):
+        if len(self.__working_item_matrix) != len(chosen_item_list):
             raise StopIteration()
 
-        self.__pairs.add_sequence(chosen_values_arr)
+        self.__pairs.add_sequence(chosen_item_list)
 
         if len(self.__pairs) == previous_unique_pairs_count:
             # could not find new unique pairs - stop
             raise StopIteration()
 
         # replace returned array elements with real values and return it
-        return self.__get_iteration_value(chosen_values_arr)
+        return self.__get_iteration_value(chosen_item_list)
 
     def __validate_parameter(self, value):
         if isinstance(value, OrderedDict):
@@ -170,14 +170,14 @@ class AllPairs(object):
             if not parameter_list:
                 raise ValueError("each parameter arrays must have at least one item")
 
-    def __resort_working_array(self, chosen_values_arr, num):
+    def __resort_working_array(self, chosen_item_list, num):
         for item in self.__working_item_matrix[num]:
             data_node = self.__pairs.get_node_info(item)
 
             new_combs = [
                 # numbers of new combinations to be created if this item is
                 # appended to array
-                set([key(z) for z in combinations(chosen_values_arr + [item], i + 1)])
+                set([key(z) for z in combinations(chosen_item_list + [item], i + 1)])
                 - self.__pairs.get_combs()[i]
                 for i in range(0, self.__n)
             ]
