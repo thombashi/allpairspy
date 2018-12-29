@@ -19,13 +19,20 @@ class Item(object):
     def value(self):
         return self.__value
 
+    @property
+    def weights(self):
+        return self.__weights
+
     def __init__(self, item_id, value):
         self.__item_id = item_id
         self.__value = value
-        self.weights = []
+        self.set_weights([])
 
     def __str__(self):
         return str(self.__dict__)
+
+    def set_weights(self, weights):
+        self.__weights = weights
 
 
 def get_max_combination_number(prameter_matrix, n):
@@ -178,13 +185,12 @@ class AllPairs(object):
                 for i in range(0, self.__n)
             ]
 
-            # weighting the node
-            # node that creates most of new pairs is the best
-            item.weights = [-len(new_combs[-1])]
+            # weighting the node node that creates most of new pairs is the best
+            weights = [-len(new_combs[-1])]
 
             # less used outbound connections most likely to produce more new
             # pairs while search continues
-            item.weights += (
+            weights.extend(
                 [len(data_node.out)]
                 + [len(x) for x in reversed(new_combs[:-1])]
                 + [-data_node.counter]  # less used node is better
@@ -192,7 +198,9 @@ class AllPairs(object):
 
             # otherwise we will prefer node with most of free inbound
             # connections; somehow it works out better ;)
-            item.weights.append(-len(data_node.in_))
+            weights.append(-len(data_node.in_))
+
+            item.set_weights(weights)
 
         self.__working_item_matrix[num].sort(key=cmp_to_key(cmp_item))
 
