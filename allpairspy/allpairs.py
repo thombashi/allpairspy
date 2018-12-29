@@ -55,7 +55,7 @@ class AllPairs(object):
 
         self.__is_ordered_dict_param = isinstance(parameters, OrderedDict)
         self.__param_name_list = self.__extract_param_name_list(parameters)
-        self.__Pairs = namedtuple("Pairs", self.__param_name_list)
+        self.__pairs_class = namedtuple("Pairs", self.__param_name_list)
 
         self.__filter_func = filter_func
         self.__n = n
@@ -213,7 +213,7 @@ class AllPairs(object):
         if not self.__param_name_list:
             return [item.value for item in item_list]
 
-        return self.__Pairs(*[item.value for item in item_list])
+        return self.__pairs_class(*[item.value for item in item_list])
 
     def __extract_param_name_list(self, parameters):
         if not self.__is_ordered_dict_param:
