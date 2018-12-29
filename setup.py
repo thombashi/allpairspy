@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+import io
 import os.path
 import sys
 
@@ -29,6 +30,9 @@ def get_release_command_class():
 with open(os.path.join(MODULE_NAME, "__version__.py")) as f:
     exec(f.read(), pkg_info)
 
+with io.open("README.rst", encoding="utf8") as fp:
+    long_description = fp.read()
+
 with open(os.path.join(REQUIREMENT_DIR, "requirements.txt")) as f:
     install_requires = [line.strip() for line in f if line.strip()]
 
@@ -45,11 +49,7 @@ setuptools.setup(
     author=pkg_info["__author__"],
     author_email=pkg_info["__author_email__"],
     description="Pairwise test combinations generator",
-    long_description="""Pairwise (aka 'all-pairs') test combinations generator written in
-Python. Allows one to create a set of tests using 'pairwise combinations' method,
-reducing a number of combinations of variables
-into a lesser set that covers most situations.
-""",
+    long_description=long_description,
     license=pkg_info["__license__"],
     maintainer=pkg_info["__maintainer__"],
     maintainer_email=pkg_info["__maintainer_email__"],
