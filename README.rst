@@ -1,24 +1,26 @@
-**allpairspy**
-
-Forked from `bayandin/allpairs <https://github.com/bayandin/allpairs>`__
-
-.. contents:: Table of Contents
+.. contents:: **allpairspy** forked from `bayandin/allpairs <https://github.com/bayandin/allpairs>`__
+   :backlinks: top
    :depth: 2
 
 .. image:: https://badge.fury.io/py/allpairspy.svg
     :target: https://badge.fury.io/py/allpairspy
+    :alt: PyPI package version
 
 .. image:: https://img.shields.io/pypi/pyversions/allpairspy.svg
-   :target: https://pypi.org/project/allpairspy
+    :target: https://pypi.org/project/allpairspy
+    :alt: Supported Python versions
 
-.. image:: https://img.shields.io/travis/thombashi/allpairspy/master.svg?label=Linux/macOS-CI
+.. image:: https://img.shields.io/travis/thombashi/allpairspy/master.svg?label=Linux/macOS%20CI
     :target: https://travis-ci.org/thombashi/allpairspy
+    :alt: Linux/macOS CI status
 
-.. image:: https://img.shields.io/appveyor/ci/thombashi/allpairspy/master.svg?label=Windows-CI
+.. image:: https://img.shields.io/appveyor/ci/thombashi/allpairspy/master.svg?label=Windows%20CI
     :target: https://ci.appveyor.com/project/thombashi/allpairspy
+    :alt: Windows CI status
 
 .. image:: https://coveralls.io/repos/github/thombashi/allpairspy/badge.svg?branch=master
     :target: https://coveralls.io/github/thombashi/allpairspy?branch=master
+    :alt: Test coverage
 
 
 AllPairs test combinations generator
