@@ -259,9 +259,20 @@ Other examples could be found in `examples <https://github.com/thombashi/allpair
 
 Installation
 ------------
-.. code::
+
+Install from PyPI
+==================================
+::
 
     pip install allpairspy
+
+Install from PPA (for Ubuntu)
+==================================
+::
+
+    sudo add-apt-repository ppa:thombashi/ppa
+    sudo apt update
+    sudo apt install python3-allpairspy
 
 
 Known issues
@@ -276,6 +287,6 @@ Known issues
 
 Dependencies
 ------------
-Python 2.7+ or 3.4+
+Python 2.7+ or 3.5+
 
 - `six <https://pypi.org/project/six/>`__
