@@ -10,13 +10,14 @@ from allpairspy import AllPairs
 Provided to make it easier to compare efficiency with other tools
 as per http://pairwise.org/tools.asp
 
-Current iuput is:
+Current output is:
 
 3^4: produces 9 rows
 3^13: produces 17 rows
 4^15 * 3^17 * 2^29: produces 37 rows
 4^1 * 3^39 * 2^35: produces 27 rows
 3^100: produces 29 rows
+2^100: produces 15 rows
 10^20: produces 219 rows
 10^10: produces 172 rows
 """
@@ -50,5 +51,6 @@ print_result(((3, 13),))
 print_result(((4, 15), (3, 17), (2, 29)))
 print_result(((4, 1), (3, 39), (2, 35)))
 print_result(((3, 100),))
+print_result(((2, 100),))
 print_result(((10, 20),))
 print_result(((10, 10),))
