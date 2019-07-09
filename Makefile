@@ -1,6 +1,7 @@
 PACKAGE := allpairspy
 BUILD_WORK_DIR := _work
 DIST_DIR := $(BUILD_WORK_DIR)/$(PACKAGE)/dist
+VENV_PATH := .venv
 
 
 .PHONY: build
@@ -38,3 +39,10 @@ fmt:
 release:
 	@cd $(BUILD_WORK_DIR)/$(PACKAGE); python setup.py release --sign
 	@make clean
+
+.PHONY: venv
+venv:
+	virtualenv --version >/dev/null || pip3 install --user virtualenv
+	test -d "$(VENV_PATH)"          || virtualenv --no-site-packages "$(VENV_PATH)"
+	. "$(VENV_PATH)/bin/activate"   && pip3 install --quiet -r requirements/requirements.txt -r requirements/test_requirements.txt
+	. "$(VENV_PATH)/bin/activate"   && pip3 install .
