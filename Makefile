@@ -5,6 +5,12 @@ DIST_DIR := $(BUILD_WORK_DIR)/$(PACKAGE)/dist
 
 .PHONY: build
 build:
+	@make clean
+	@tox -e build
+	ls -lh dist/*
+
+.PHONY: build-repo
+build-repo:
 	@rm -rf $(BUILD_WORK_DIR)/
 	@mkdir -p $(BUILD_WORK_DIR)/
 	@cd $(BUILD_WORK_DIR); \
