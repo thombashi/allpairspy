@@ -45,7 +45,6 @@ setuptools.setup(
     name=MODULE_NAME,
     version=pkg_info["__version__"],
     url=REPOSITORY_URL,
-
     author=pkg_info["__author__"],
     author_email=pkg_info["__author_email__"],
     description="Pairwise test combinations generator",
@@ -55,20 +54,12 @@ setuptools.setup(
     maintainer=pkg_info["__maintainer__"],
     maintainer_email=pkg_info["__maintainer_email__"],
     packages=setuptools.find_packages(exclude=["test*"]),
-    project_urls={
-        "Source": REPOSITORY_URL,
-        "Tracker": "{:s}/issues".format(REPOSITORY_URL),
-    },
-
+    project_urls={"Source": REPOSITORY_URL, "Tracker": "{:s}/issues".format(REPOSITORY_URL)},
     python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
     install_requires=install_requires,
     setup_requires=PYTEST_RUNNER_REQUIRES,
     tests_require=tests_requires,
-    extras_require={
-        "release": ["releasecmd>=0.0.18,<0.1.0"],
-        "test": tests_requires,
-    },
-
+    extras_require={"release": ["releasecmd>=0.2.0,<1"], "test": tests_requires,},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
@@ -91,4 +82,5 @@ setuptools.setup(
         "Topic :: Software Development :: Testing",
         "Topic :: Utilities",
     ],
-    cmdclass=get_release_command_class())
+    cmdclass=get_release_command_class(),
+)
