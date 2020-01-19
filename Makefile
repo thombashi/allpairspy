@@ -20,6 +20,11 @@ build-repo:
 	@twine check $(DIST_DIR)/*
 	ls -lh $(DIST_DIR)/*
 
+.PHONY: check
+check:
+	@tox -e lint
+	travis lint
+
 .PHONY: clean
 clean:
 	@-python setup.py clean --all
