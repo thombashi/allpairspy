@@ -15,3 +15,21 @@ exclude = '''
 )/
 | docs/conf.py
 '''
+
+[tool.coverage.run]
+source = ['allpairspy']
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+precision = 1
+exclude_lines = [
+    'except ImportError',
+    'raise NotImplementedError',
+    'pass',
+    'ABCmeta',
+    'abstractmethod',
+    'abstractproperty',
+    'abstractclassmethod',
+    'warnings.warn',
+]
