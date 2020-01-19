@@ -14,8 +14,11 @@ REQUIREMENT_DIR = "requirements"
 pkg_info = {}
 
 
-def need_pytest():
-    return set(["pytest", "test", "ptr"]).intersection(sys.argv)
+def pytest_runner_requires():
+    if set(["pytest", "test", "ptr"]).intersection(sys.argv):
+        return ["pytest-runner"]
+
+    return []
 
 
 def get_release_command_class():
@@ -39,8 +42,6 @@ with open(os.path.join(REQUIREMENT_DIR, "requirements.txt")) as f:
 with open(os.path.join(REQUIREMENT_DIR, "test_requirements.txt")) as f:
     tests_requires = [line.strip() for line in f if line.strip()]
 
-PYTEST_RUNNER_REQUIRES = ["pytest-runner"] if need_pytest() else []
-
 setuptools.setup(
     name=MODULE_NAME,
     version=pkg_info["__version__"],
@@ -57,7 +58,7 @@ setuptools.setup(
     project_urls={"Source": REPOSITORY_URL, "Tracker": "{:s}/issues".format(REPOSITORY_URL)},
     python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
     install_requires=install_requires,
-    setup_requires=PYTEST_RUNNER_REQUIRES,
+    setup_requires=pytest_runner_requires(),
     tests_require=tests_requires,
     extras_require={"release": ["releasecmd>=0.2.0,<1"], "test": tests_requires,},
     classifiers=[
