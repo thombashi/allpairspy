@@ -50,6 +50,7 @@ setuptools.setup(
     author_email=pkg_info["__author_email__"],
     description="Pairwise test combinations generator",
     long_description=long_description,
+    long_description_content_type="text/x-rst",
     license=pkg_info["__license__"],
     maintainer=pkg_info["__maintainer__"],
     maintainer_email=pkg_info["__maintainer_email__"],
