@@ -1,6 +1,8 @@
+OWNER := thombashi
 PACKAGE := allpairspy
 BUILD_WORK_DIR := _work
 DIST_DIR := $(BUILD_WORK_DIR)/$(PACKAGE)/dist
+PKG_BUILD_DIR := $(BUILD_WORK_DIR)/$(PACKAGE)
 
 
 .PHONY: build
@@ -11,14 +13,14 @@ build:
 
 .PHONY: build-remote
 build-remote:
-	@rm -rf $(BUILD_WORK_DIR)/
-	@mkdir -p $(BUILD_WORK_DIR)/
-	@cd $(BUILD_WORK_DIR); \
-		git clone https://github.com/thombashi/$(PACKAGE).git; \
-		cd $(PACKAGE); \
-		python setup.py sdist bdist_wheel
-	@twine check $(DIST_DIR)/*
-	ls -lh $(DIST_DIR)/*
+build-remote:
+	@rm -rf $(BUILD_WORK_DIR)
+	@mkdir -p $(BUILD_WORK_DIR)
+	@cd $(BUILD_WORK_DIR) && \
+		git clone https://github.com/$(OWNER)/$(PACKAGE).git && \
+		cd $(PACKAGE) && \
+		tox -e build
+	ls -lh $(PKG_BUILD_DIR)/dist/*
 
 .PHONY: check
 check:
@@ -35,5 +37,5 @@ fmt:
 
 .PHONY: release
 release:
-	@cd $(BUILD_WORK_DIR)/$(PACKAGE); python setup.py release --sign
+	@cd $(PKG_BUILD_DIR) && python setup.py release --sign
 	@make clean
