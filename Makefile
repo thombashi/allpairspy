@@ -9,8 +9,8 @@ build:
 	@tox -e build
 	ls -lh dist/*
 
-.PHONY: build-repo
-build-repo:
+.PHONY: build-remote
+build-remote:
 	@rm -rf $(BUILD_WORK_DIR)/
 	@mkdir -p $(BUILD_WORK_DIR)/
 	@cd $(BUILD_WORK_DIR); \
