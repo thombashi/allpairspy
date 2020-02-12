@@ -163,10 +163,10 @@ You can restrict pairs by setting filtering function to ``filter_func`` at
         14: ['Brand Y', '2000', 'Modem', 'Contr.', 60]
 
 
-OrderedDict
-==================
+Data Source: OrderedDict
+====================================
 You can use ``collections.OrderedDict`` instance as an argument for ``AllPairs`` constructor.
-Pairs returned as ``collections.namedtuple`` instances.
+Pairs will be returned as ``collections.namedtuple`` instances.
 
 :Sample Code:
     .. code:: python
@@ -202,22 +202,24 @@ Pairs returned as ``collections.namedtuple`` instances.
         11: Pairs(brand='Brand X', os='2000', minute=15)
 
 
-Parameterized testing with pairwise by using py.test
+Parameterized testing with pairwise by using pytest
 ====================================================================
+
+Parameterized testing: valee matrix
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 :Sample Code:
     .. code:: python
 
         import pytest
         from allpairspy import AllPairs
 
-        def function_to_be_tested(brand, operating_system, minute):
+        def function_to_be_tested(brand, operating_system, minute) -> bool:
             # do something
             return True
 
         class TestParameterized(object):
-
             @pytest.mark.parametrize(["brand", "operating_system", "minute"], [
-                value_list for value_list in AllPairs([
+                values for values in AllPairs([
                     ["Brand X", "Brand Y"],
                     ["98", "NT", "2000", "XP"],
                     [10, 15, 30, 60]
@@ -251,6 +253,37 @@ Parameterized testing with pairwise by using py.test
         test_parameterize.py::TestParameterized::test[Brand X-98-15] PASSED      [ 93%]
         test_parameterize.py::TestParameterized::test[Brand X-NT-15] PASSED      [100%]
 
+Parameterized testing: OrderedDict
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:Sample Code:
+    .. code:: python
+
+        import pytest
+        from allpairspy import AllPairs
+
+        def function_to_be_tested(brand, operating_system, minute) -> bool:
+            # do something
+            return True
+
+        class TestParameterized(object):
+            @pytest.mark.parametrize(
+                ["pair"],
+                [
+                    [pair]
+                    for pair in AllPairs(
+                        OrderedDict(
+                            {
+                                "brand": ["Brand X", "Brand Y"],
+                                "operating_system": ["98", "NT", "2000", "XP"],
+                                "minute": [10, 15, 30, 60],
+                            }
+                        )
+                    )
+                ],
+            )
+            def test(self, pair):
+                assert function_to_be_tested(pair.brand, pair.operating_system, pair.minute)
+
 
 Other Examples
 =================
@@ -260,14 +293,16 @@ Other examples could be found in `examples <https://github.com/thombashi/allpair
 Installation
 ------------
 
-Install from PyPI
+Installation: pip
 ==================================
 ::
 
     pip install allpairspy
 
-Install from PPA (for Ubuntu)
+Installation: apt
 ==================================
+You can install the package by ``apt`` via a Personal Package Archive (`PPA <https://launchpad.net/~thombashi/+archive/ubuntu/ppa>`__):
+
 ::
 
     sudo add-apt-repository ppa:thombashi/ppa
