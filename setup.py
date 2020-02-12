@@ -2,7 +2,6 @@
 
 import io
 import os.path
-import sys
 
 import setuptools
 
@@ -12,13 +11,6 @@ REPOSITORY_URL = "https://github.com/thombashi/{:s}".format(MODULE_NAME)
 REQUIREMENT_DIR = "requirements"
 
 pkg_info = {}
-
-
-def pytest_runner_requires():
-    if set(["pytest", "test", "ptr"]).intersection(sys.argv):
-        return ["pytest-runner"]
-
-    return []
 
 
 def get_release_command_class():
@@ -58,8 +50,6 @@ setuptools.setup(
     project_urls={"Source": REPOSITORY_URL, "Tracker": "{:s}/issues".format(REPOSITORY_URL)},
     python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
     install_requires=install_requires,
-    setup_requires=pytest_runner_requires(),
-    tests_require=tests_requires,
     extras_require={"release": ["releasecmd>=0.2.0,<1"], "test": tests_requires,},
     classifiers=[
         "Development Status :: 5 - Production/Stable",

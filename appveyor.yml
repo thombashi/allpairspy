@@ -19,7 +19,7 @@ install:
     - "%PYTHON%/Scripts/pip.exe install .[test]"
 
 test_script:
-    - "%PYTHON%/python.exe setup.py test"
+    - "%PYTHON%/python.exe -m pytest -vv"
 
 notifications:
     - provider: Slack
