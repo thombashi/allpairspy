@@ -263,3 +263,36 @@ class Test_pairewise_filter(object):
             ["Brand Y", "XP", "Modem", "Part-Time", 6],
             ["Brand Y", "2000", "Modem", "Contr.", 60],
         ]
+
+class  Test_whitelist_function(object):
+    def test_whitelist(self):
+        parameters = [
+            ("brand", ["Brand X", "Brand Y"]),
+            ("os", ["98", "NT", "2000", "XP"]),
+            ("network", ["Internal", "Modem"]),
+            ("employee", ["Salaried", "Hourly", "Part-Time", "Contr."]),
+            ("increment", [6, 10, 15, 30, 60]),
+        ]
+        
+        def whitelist(chosen_item_list, item):
+            found_brand_x = False
+            found_os_98 = False
+            for chosen_item in chosen_item_list:
+                if chosen_item.value == "Brand X": found_brand_x = True
+                if chosen_item.value == "98": found_os_98 = True
+            
+            if item.value == "Brand X": found_brand_x = True
+            if item.value == "98": found_os_98 = True
+            if found_brand_x and found_os_98:
+                return False
+            else:
+                return True
+        new_list = list(AllPairs([x[1] for x in parameters], whitelist_func=whitelist))
+        print(new_list)
+        for record in new_list:
+            found_brand_x = False
+            found_os_98  = False
+            for item in record:
+                if item == "Brand X": found_brand_x = True
+                if item == "98": found_os_98 = True
+            assert not (found_brand_x and found_os_98)

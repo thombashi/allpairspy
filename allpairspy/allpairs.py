@@ -49,7 +49,7 @@ def cmp_item(lhs, rhs):
 
 
 class AllPairs(object):
-    def __init__(self, parameters, filter_func=lambda x: True, previously_tested=None, n=2):
+    def __init__(self, parameters, filter_func=lambda x: True, whitelist_func=lambda x, y: True, previously_tested=None, n=2):
         """
         TODO: check that input arrays are:
             - (optional) has no duplicated values inside single array / or compress such values
@@ -65,6 +65,7 @@ class AllPairs(object):
         self.__pairs_class = namedtuple("Pairs", self.__param_name_list)
 
         self.__filter_func = filter_func
+        self.__whitelist_func = whitelist_func
         self.__n = n
         self.__pairs = PairsStorage(n)
 
@@ -177,22 +178,24 @@ class AllPairs(object):
         for item in self.__working_item_matrix[num]:
             data_node = self.__pairs.get_node_info(item)
 
-            new_combs = [
                 # numbers of new combinations to be created if this item is
                 # appended to array
-                set([key(z) for z in combinations(chosen_item_list + [item], i + 1)])
-                - self.__pairs.get_combs()[i]
-                for i in range(0, self.__n)
-            ]
+                # TODO: There should always be some case where some new combinations are possible and the tie-breakers are only for those that have equal chances of new items.
+            new_combs = set([key(z) for z in combinations(chosen_item_list + [item], self.__n)]) - self.__pairs.get_combs()[self.__n - 1]
+
 
             # weighting the node node that creates most of new pairs is the best
-            weights = [-len(new_combs[-1])]
+            if self.__whitelist_func(chosen_item_list, item):
+                weights = [-len(new_combs)]
+            else:
+                weights = [float("inf")]
+
 
             # less used outbound connections most likely to produce more new
             # pairs while search continues
             weights.extend(
                 [len(data_node.out)]
-                + [len(x) for x in reversed(new_combs[:-1])]
+                + [len(x) for x in new_combs]
                 + [-data_node.counter]  # less used node is better
             )
 
