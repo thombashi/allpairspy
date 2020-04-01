@@ -178,15 +178,17 @@ class AllPairs(object):
         for item in self.__working_item_matrix[num]:
             data_node = self.__pairs.get_node_info(item)
 
+            new_combs = [
                 # numbers of new combinations to be created if this item is
                 # appended to array
-                # TODO: There should always be some case where some new combinations are possible and the tie-breakers are only for those that have equal chances of new items.
-            new_combs = set([key(z) for z in combinations(chosen_item_list + [item], self.__n)]) - self.__pairs.get_combs()[self.__n - 1]
-
+                set([key(z) for z in combinations(chosen_item_list + [item], i + 1)])
+                - self.__pairs.get_combs()[i]
+                for i in range(0, self.__n)
+            ]
 
             # weighting the node node that creates most of new pairs is the best
             if self.__whitelist_func(chosen_item_list, item):
-                weights = [-len(new_combs)]
+                weights = [-len(new_combs[-1])]
             else:
                 weights = [float("inf")]
 
@@ -195,7 +197,7 @@ class AllPairs(object):
             # pairs while search continues
             weights.extend(
                 [len(data_node.out)]
-                + [len(x) for x in new_combs]
+                + [len(x) for x in reversed(new_combs[:-1])]
                 + [-data_node.counter]  # less used node is better
             )
 
