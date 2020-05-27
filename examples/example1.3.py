@@ -1,12 +1,9 @@
-#!/usr/bin/env python
-# encoding: utf-8
+#!/usr/bin/env python3
 
 """
 Demo of the basic functionality - just getting pairwise combinations
 and skipping previously tested pairs.
 """
-
-from __future__ import print_function
 
 from allpairspy import AllPairs
 

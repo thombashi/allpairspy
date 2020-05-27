@@ -1,16 +1,11 @@
-# encoding: utf-8
-
 from collections import OrderedDict, namedtuple
-from functools import cmp_to_key
+from functools import cmp_to_key, reduce
 from itertools import combinations
-
-import six
-from six.moves import range, reduce
 
 from .pairs_storage import PairsStorage, key
 
 
-class Item(object):
+class Item:
     @property
     def id(self):
         return self.__item_id
@@ -48,7 +43,7 @@ def cmp_item(lhs, rhs):
     return -1 if lhs.weights < rhs.weights else 1
 
 
-class AllPairs(object):
+class AllPairs:
     def __init__(self, parameters, filter_func=lambda x: True, previously_tested=None, n=2):
         """
         TODO: check that input arrays are:
@@ -160,7 +155,7 @@ class AllPairs(object):
 
     def __validate_parameter(self, value):
         if isinstance(value, OrderedDict):
-            for parameter_list in six.itervalues(value):
+            for parameter_list in value.values():
                 if not parameter_list:
                     raise ValueError("each parameter arrays must have at least one item")
 
@@ -180,7 +175,7 @@ class AllPairs(object):
             new_combs = [
                 # numbers of new combinations to be created if this item is
                 # appended to array
-                set([key(z) for z in combinations(chosen_item_list + [item], i + 1)])
+                {key(z) for z in combinations(chosen_item_list + [item], i + 1)}
                 - self.__pairs.get_combs()[i]
                 for i in range(0, self.__n)
             ]
@@ -233,4 +228,4 @@ class AllPairs(object):
         if not self.__is_ordered_dict_param:
             return parameters
 
-        return [v for v in six.itervalues(parameters)]
+        return [v for v in parameters.values()]

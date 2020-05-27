@@ -1,6 +1,3 @@
-# encoding: utf-8
-
-import io
 import os.path
 
 import setuptools
@@ -25,7 +22,7 @@ def get_release_command_class():
 with open(os.path.join(MODULE_NAME, "__version__.py")) as f:
     exec(f.read(), pkg_info)
 
-with io.open("README.rst", encoding="utf8") as fp:
+with open("README.rst", encoding="utf8") as fp:
     long_description = fp.read()
 
 with open(os.path.join(REQUIREMENT_DIR, "requirements.txt")) as f:
@@ -48,7 +45,7 @@ setuptools.setup(
     maintainer_email=pkg_info["__maintainer_email__"],
     packages=setuptools.find_packages(exclude=["tests*"]),
     project_urls={"Source": REPOSITORY_URL, "Tracker": "{:s}/issues".format(REPOSITORY_URL)},
-    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
+    python_requires=">=3.5",
     install_requires=install_requires,
     extras_require={"test": tests_requires},
     classifiers=[
@@ -61,13 +58,12 @@ setuptools.setup(
         "Natural Language :: English",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
         "Topic :: Software Development :: Libraries",

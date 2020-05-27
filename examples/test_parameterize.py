@@ -1,11 +1,8 @@
-#!/usr/bin/env python
-# encoding: utf-8
+#!/usr/bin/env python3
 
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
-
-from __future__ import print_function, unicode_literals
 
 import pytest
 from allpairspy import AllPairs
@@ -17,7 +14,7 @@ def function_to_be_tested(brand, operating_system, minute):
     return True
 
 
-class TestParameterized(object):
+class TestParameterized:
     @pytest.mark.parametrize(
         ["brand", "operating_system", "minute"],
         [

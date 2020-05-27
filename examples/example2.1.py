@@ -1,11 +1,8 @@
-#!/usr/bin/env python
-# encoding: utf-8
+#!/usr/bin/env python3
 
 """
 Demo of filtering capabilities
 """
-
-from __future__ import print_function
 
 from allpairspy import AllPairs
 

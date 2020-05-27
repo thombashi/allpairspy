@@ -1,11 +1,7 @@
-# encoding: utf-8
-
 from itertools import combinations
 
-from six.moves import range
 
-
-class Node(object):
+class Node:
     @property
     def id(self):
         return self.__node_id
@@ -40,7 +36,7 @@ def key(items):
     return key_value
 
 
-class PairsStorage(object):
+class PairsStorage:
     def __init__(self, n):
         self.__n = n
         self.__nodes = {}

@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 """
 .. codeauthor:: Tsuyoshi Hombashi <tsuyoshi.hombashi@gmail.com>
 """
@@ -9,7 +7,7 @@ from collections import OrderedDict
 from allpairspy import AllPairs
 
 
-class Test_pairewise_OrderedDict(object):
+class Test_pairewise_OrderedDict:
     def test_normal(self):
         parameters = OrderedDict(
             {"brand": ["Brand X", "Brand Y"], "os": ["NT", "2000", "XP"], "minute": [15, 30, 60]}
@@ -24,7 +22,7 @@ class Test_pairewise_OrderedDict(object):
         assert len(list(AllPairs(parameters))) == 9
 
 
-class Test_pairewise_list(object):
+class Test_pairewise_list:
     # example1.1.py
 
     def test_normal(self):
@@ -62,7 +60,7 @@ class Test_pairewise_list(object):
         ]
 
 
-class Test_triplewise(object):
+class Test_triplewise:
     # example1.2.py
 
     def test_normal(self):
@@ -105,7 +103,7 @@ class Test_triplewise(object):
         ]
 
 
-class Test_pairewise_w_tested(object):
+class Test_pairewise_w_tested:
     # example1.3.py
 
     def test_normal(self):
@@ -146,7 +144,7 @@ class Test_pairewise_w_tested(object):
         ]
 
 
-class Test_pairewise_filter(object):
+class Test_pairewise_filter:
     def test_normal_example21(self):
         # example2.1.py
 
