@@ -322,6 +322,5 @@ Known issues
 
 Dependencies
 ------------
-Python 2.7+ or 3.5+
-
-- `six <https://pypi.org/project/six/>`__
+Python 3.5+
+no external dependencies.
