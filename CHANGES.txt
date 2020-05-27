@@ -1,3 +1,6 @@
+Since 2.1.0:
+https://github.com/thombashi/allpairspy/releases
+
 Version 2.0.1 (April 4, 2009):
 
     - Moved examples into their own directory.
