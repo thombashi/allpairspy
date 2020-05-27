@@ -46,7 +46,7 @@ setuptools.setup(
     license=pkg_info["__license__"],
     maintainer=pkg_info["__maintainer__"],
     maintainer_email=pkg_info["__maintainer_email__"],
-    packages=setuptools.find_packages(exclude=["test*"]),
+    packages=setuptools.find_packages(exclude=["tests*"]),
     project_urls={"Source": REPOSITORY_URL, "Tracker": "{:s}/issues".format(REPOSITORY_URL)},
     python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
     install_requires=install_requires,
