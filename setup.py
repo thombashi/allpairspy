@@ -50,7 +50,7 @@ setuptools.setup(
     project_urls={"Source": REPOSITORY_URL, "Tracker": "{:s}/issues".format(REPOSITORY_URL)},
     python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
     install_requires=install_requires,
-    extras_require={"release": ["releasecmd>=0.2.0,<1"], "test": tests_requires,},
+    extras_require={"test": tests_requires},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
