@@ -35,7 +35,6 @@ exclude_lines = [
 ]
 
 [tool.isort]
-dont_skip = "*/**/__init__.py"
 known_third_party = [
 ]
 include_trailing_comma = true
