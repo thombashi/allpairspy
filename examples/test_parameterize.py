@@ -5,6 +5,7 @@
 """
 
 import pytest
+
 from allpairspy import AllPairs
 
 
