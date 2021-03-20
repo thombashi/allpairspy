@@ -1,4 +1,4 @@
-include LICENSE
+include LICENSE.txt
 include README.rst
 include setup.cfg
 include tox.ini
