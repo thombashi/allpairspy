@@ -6,15 +6,12 @@ PKG_BUILD_DIR := $(BUILD_WORK_DIR)/$(PACKAGE)
 
 
 .PHONY: build
-build:
-	@make clean
+build: clean
 	@tox -e build
 	ls -lh dist/*
 
 .PHONY: build-remote
-build-remote:
-build-remote:
-	@rm -rf $(BUILD_WORK_DIR)
+build-remote: clean
 	@mkdir -p $(BUILD_WORK_DIR)
 	@cd $(BUILD_WORK_DIR) && \
 		git clone https://github.com/$(OWNER)/$(PACKAGE).git && \
@@ -29,7 +26,8 @@ check:
 
 .PHONY: clean
 clean:
-	@tox -e clean
+	@rm -rf $(BUILD_WORK_DIR)
+	@$(PYTHON) -m tox -e clean
 
 .PHONY: fmt
 fmt:
