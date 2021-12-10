@@ -75,17 +75,19 @@ Basic Usage
          8: ['Brand X', '98', 'Internal', 'Hourly', 60]
          9: ['Brand Y', '2000', 'Modem', 'Contr.', 60]
         10: ['Brand Y', 'NT', 'Modem', 'Salaried', 60]
-        11: ['Brand Y', 'XP', 'Modem', 'Part-Time', 60]
-        12: ['Brand Y', '2000', 'Modem', 'Hourly', 30]
+        11: ['Brand X', 'XP', 'Internal', 'Part-Time', 6]
+        12: ['Brand X', '2000', 'Internal', 'Hourly', 30]
         13: ['Brand Y', '98', 'Modem', 'Contr.', 15]
-        14: ['Brand Y', 'XP', 'Modem', 'Salaried', 15]
-        15: ['Brand Y', 'NT', 'Modem', 'Part-Time', 15]
-        16: ['Brand Y', 'XP', 'Modem', 'Part-Time', 30]
-        17: ['Brand Y', '98', 'Modem', 'Part-Time', 6]
+        14: ['Brand Y', 'XP', 'Modem', 'Salaried', 10]
+        15: ['Brand X', 'NT', 'Internal', 'Part-Time', 15]
+        16: ['Brand X', 'XP', 'Internal', 'Part-Time', 30]
+        17: ['Brand Y', '98', 'Modem', 'Part-Time', 60]
         18: ['Brand Y', '2000', 'Modem', 'Salaried', 6]
-        19: ['Brand Y', '98', 'Modem', 'Salaried', 10]
-        20: ['Brand Y', 'XP', 'Modem', 'Contr.', 6]
-        21: ['Brand Y', 'NT', 'Modem', 'Hourly', 10]
+        19: ['Brand X', 'NT', 'Internal', 'Contr.', 10]
+        20: ['Brand X', '98', 'Internal', 'Hourly', 10]
+        21: ['Brand Y', 'XP', 'Modem', 'Contr.', 6]
+        22: ['Brand Y', 'XP', 'Modem', 'Salaried', 60]
+        23: ['Brand X', 'NT', 'Internal', 'Salaried', 15]
 
 
 Filtering
@@ -153,10 +155,19 @@ You can restrict pairs by setting filtering function to ``filter_func`` at
          8: ['Brand Y', 'NT', 'Internal', 'Part-Time', 30]
          9: ['Brand X', '2000', 'Modem', 'Hourly', 10]
         10: ['Brand Y', 'XP', 'Modem', 'Contr.', 30]
-        11: ['Brand Y', '2000', 'Modem', 'Salaried', 15]
-        12: ['Brand Y', 'NT', 'Modem', 'Salaried', 10]
-        13: ['Brand Y', 'XP', 'Modem', 'Part-Time', 6]
-        14: ['Brand Y', '2000', 'Modem', 'Contr.', 60]
+        11: ['Brand X', '98', 'Internal', 'Contr.', 60]
+        12: ['Brand X', '2000', 'Internal', 'Salaried', 15]
+        13: ['Brand Y', 'NT', 'Modem', 'Salaried', 10]
+        14: ['Brand Y', 'XP', 'Modem', 'Part-Time', 6]
+        15: ['Brand X', '98', 'Internal', 'Hourly', 30]
+        16: ['Brand X', '2000', 'Internal', 'Contr.', 60]
+        17: ['Brand Y', 'NT', 'Modem', 'Hourly', 15]
+        18: ['Brand X', '98', 'Internal', 'Part-Time', 10]
+        19: ['Brand Y', 'XP', 'Modem', 'Salaried', 10]
+        20: ['Brand X', '2000', 'Internal', 'Salaried', 6]
+        21: ['Brand Y', 'NT', 'Modem', 'Part-Time', 60]
+        22: ['Brand X', '98', 'Internal', 'Hourly', 60]
+        23: ['Brand Y', 'XP', 'Modem', 'Salaried', 30]
 
 
 Data Source: OrderedDict
@@ -183,7 +194,6 @@ Pairs will be returned as ``collections.namedtuple`` instances.
 :Sample Code:
     .. code::
 
-        PAIRWISE:
          0: Pairs(brand='Brand X', os='98', minute=15)
          1: Pairs(brand='Brand Y', os='NT', minute=15)
          2: Pairs(brand='Brand Y', os='2000', minute=30)
@@ -191,10 +201,10 @@ Pairs will be returned as ``collections.namedtuple`` instances.
          4: Pairs(brand='Brand X', os='2000', minute=60)
          5: Pairs(brand='Brand Y', os='XP', minute=60)
          6: Pairs(brand='Brand Y', os='98', minute=60)
-         7: Pairs(brand='Brand X', os='NT', minute=60)
-         8: Pairs(brand='Brand X', os='NT', minute=30)
-         9: Pairs(brand='Brand X', os='98', minute=30)
-        10: Pairs(brand='Brand X', os='XP', minute=15)
+         7: Pairs(brand='Brand X', os='NT', minute=30)
+         8: Pairs(brand='Brand X', os='NT', minute=60)
+         9: Pairs(brand='Brand Y', os='98', minute=30)
+        10: Pairs(brand='Brand Y', os='XP', minute=15)
         11: Pairs(brand='Brand X', os='2000', minute=15)
 
 
@@ -241,12 +251,12 @@ Parameterized testing: valee matrix
         test_parameterize.py::TestParameterized::test[Brand Y-98-60] PASSED      [ 43%]
         test_parameterize.py::TestParameterized::test[Brand X-NT-60] PASSED      [ 50%]
         test_parameterize.py::TestParameterized::test[Brand X-NT-30] PASSED      [ 56%]
-        test_parameterize.py::TestParameterized::test[Brand X-98-30] PASSED      [ 62%]
-        test_parameterize.py::TestParameterized::test[Brand X-XP-60] PASSED      [ 68%]
-        test_parameterize.py::TestParameterized::test[Brand X-2000-60] PASSED    [ 75%]
-        test_parameterize.py::TestParameterized::test[Brand X-2000-10] PASSED    [ 81%]
-        test_parameterize.py::TestParameterized::test[Brand X-XP-10] PASSED      [ 87%]
-        test_parameterize.py::TestParameterized::test[Brand X-98-15] PASSED      [ 93%]
+        test_parameterize.py::TestParameterized::test[Brand Y-98-15] PASSED      [ 62%]
+        test_parameterize.py::TestParameterized::test[Brand Y-XP-60] PASSED      [ 68%]
+        test_parameterize.py::TestParameterized::test[Brand X-2000-10] PASSED    [ 75%]
+        test_parameterize.py::TestParameterized::test[Brand X-2000-60] PASSED    [ 81%]
+        test_parameterize.py::TestParameterized::test[Brand Y-XP-10] PASSED      [ 87%]
+        test_parameterize.py::TestParameterized::test[Brand Y-98-30] PASSED      [ 93%]
         test_parameterize.py::TestParameterized::test[Brand X-NT-15] PASSED      [100%]
 
 Parameterized testing: OrderedDict
