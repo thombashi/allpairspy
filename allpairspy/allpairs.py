@@ -181,20 +181,15 @@ class AllPairs:
                 for i in range(0, self.__n)
             ]
 
-            # weighting the node that creates most of new pairs is the best
-            weights = [-len(new_combs[-1])]
-
-            # less used outbound connections most likely to produce more new
-            # pairs while search continues
+            # weighting the nodes
+            weights = []
             weights.extend(
-                [len(data_node.out)]
+                [-len(new_combs[-1])]  # node that creates most new pairs is the best
+                + [len(data_node.out)]  # less used outbound connections produce more new pairs
                 + [len(x) for x in reversed(new_combs[:-1])]
+                + [-len(data_node.in_)]  # prefer node with most free inbound connections
                 + [data_node.counter]  # less used node is better
             )
-
-            # otherwise we will prefer node with most of free inbound
-            # connections; somehow it works out better ;)
-            weights.append(-len(data_node.in_))
 
             item.set_weights(weights)
 

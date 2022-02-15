@@ -194,6 +194,7 @@ Pairs will be returned as ``collections.namedtuple`` instances.
 :Sample Code:
     .. code::
 
+        PAIRWISE:
          0: Pairs(brand='Brand X', os='98', minute=15)
          1: Pairs(brand='Brand Y', os='NT', minute=15)
          2: Pairs(brand='Brand Y', os='2000', minute=30)
@@ -211,7 +212,7 @@ Pairs will be returned as ``collections.namedtuple`` instances.
 Parameterized testing with pairwise by using pytest
 ====================================================================
 
-Parameterized testing: valee matrix
+Parameterized testing: value matrix
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 :Sample Code:
     .. code:: python
