@@ -9,7 +9,6 @@ from allpairspy import AllPairs
 
 
 def is_valid_combination(values, names):
-
     dictionary = dict(zip(names, values))
 
     """

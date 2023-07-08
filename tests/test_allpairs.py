@@ -210,7 +210,6 @@ class Test_pairewise_filter:
         ]
 
         def is_valid_combination(values, names):
-
             dictionary = dict(zip(names, values))
 
             """
