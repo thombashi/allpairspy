@@ -11,6 +11,20 @@ on:
       - 'README.rst'
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.event_name }}-${{ github.workflow }}-${{ github.ref_name }}-lint
+      cancel-in-progress: true
+    timeout-minutes: 20
+    container:
+      image: ghcr.io/thombashi/python-ci:3.11
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: make check
+
   unit-test:
     timeout-minutes: 20
     runs-on: ${{ matrix.os }}
