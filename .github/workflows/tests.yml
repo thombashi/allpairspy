@@ -1,6 +1,14 @@
 name: Tests
 
-on: [push, pull_request]
+on:
+  push:
+    paths-ignore:
+      - '.gitignore'
+      - 'README.rst'
+  pull_request:
+    paths-ignore:
+      - '.gitignore'
+      - 'README.rst'
 
 jobs:
   unit-test:
