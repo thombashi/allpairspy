@@ -45,7 +45,7 @@ setuptools.setup(
     maintainer_email=pkg_info["__maintainer_email__"],
     packages=setuptools.find_packages(exclude=["tests*"]),
     project_urls={"Source": REPOSITORY_URL, "Tracker": "{:s}/issues".format(REPOSITORY_URL)},
-    python_requires=">=3.5",
+    python_requires=">=3.6",
     install_requires=install_requires,
     extras_require={"test": tests_requires},
     classifiers=[
@@ -59,7 +59,6 @@ setuptools.setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
