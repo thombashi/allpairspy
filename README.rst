@@ -90,7 +90,7 @@ Basic Usage
 
 Filtering
 ==================
-You can restrict pairs by setting filtering function to ``filter_func`` at
+You can restrict pairs by setting a filtering function to ``filter_func`` at
 ``AllPairs`` constructor.
 
 :Sample Code:
@@ -198,10 +198,10 @@ Pairs will be returned as ``collections.namedtuple`` instances.
         11: Pairs(brand='Brand X', os='2000', minute=15)
 
 
-Parameterized testing with pairwise by using pytest
+Parameterized testing pairwise by using pytest
 ====================================================================
 
-Parameterized testing: valee matrix
+Parameterized testing: value matrix
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 :Sample Code:
     .. code:: python
@@ -319,7 +319,7 @@ Known issues
 
 Dependencies
 ------------
-Python 3.5+
+Python 3.7+
 no external dependencies.
 
 
