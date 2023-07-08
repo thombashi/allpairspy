@@ -9,7 +9,7 @@ import pytest
 from allpairspy import AllPairs
 
 
-def function_to_be_tested(brand, operating_system, minute):
+def function_to_be_tested(brand: str, operating_system: str, minute: int) -> bool:
     # do something
 
     return True
@@ -19,8 +19,8 @@ class TestParameterized:
     @pytest.mark.parametrize(
         ["brand", "operating_system", "minute"],
         [
-            value_list
-            for value_list in AllPairs(
+            values
+            for values in AllPairs(
                 [["Brand X", "Brand Y"], ["98", "NT", "2000", "XP"], [10, 15, 30, 60]]
             )
         ],
