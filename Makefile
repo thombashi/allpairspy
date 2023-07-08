@@ -15,7 +15,7 @@ build: clean
 build-remote: clean
 	@mkdir -p $(BUILD_WORK_DIR)
 	@cd $(BUILD_WORK_DIR) && \
-		git clone https://github.com/$(OWNER)/$(PACKAGE).git && \
+		git clone --depth 1 https://github.com/$(OWNER)/$(PACKAGE).git && \
 		cd $(PACKAGE) && \
 		$(PYTHON) -m tox -e build
 	ls -lh $(PKG_BUILD_DIR)/dist/*
