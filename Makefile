@@ -38,7 +38,11 @@ release:
 	@cd $(PKG_BUILD_DIR) && @$(PYTHON) setup.py release --verbose
 	@$(MAKE) clean
 
+.PHONY: setup-ci
+setup-ci:
+	@$(PYTHON) -m pip install -q --disable-pip-version-check --upgrade tox
+
 .PHONY: setup
-setup:
-	@$(PYTHON) -m pip install -q --disable-pip-version-check --upgrade -e .[test] releasecmd tox
+setup: setup-ci
+	@$(PYTHON) -m pip install -q --disable-pip-version-check --upgrade -e .[test] releasecmd
 	@$(PYTHON) -m pip check
