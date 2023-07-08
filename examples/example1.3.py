@@ -26,4 +26,4 @@ tested = [
 
 print("PAIRWISE:")
 for i, pairs in enumerate(AllPairs(parameters, previously_tested=tested)):
-    print("{:2d}: {}".format(i, pairs))
+    print(f"{i:2d}: {pairs}")

@@ -11,4 +11,4 @@ parameters = OrderedDict(
 
 print("PAIRWISE:")
 for i, pairs in enumerate(AllPairs(parameters)):
-    print("{:2d}: {}".format(i, pairs))
+    print(f"{i:2d}: {pairs}")

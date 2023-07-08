@@ -19,4 +19,4 @@ parameters = [
 
 print("TRIPLEWISE:")
 for i, pairs in enumerate(AllPairs(parameters, n=3)):
-    print("{:2d}: {}".format(i, pairs))
+    print(f"{i:2d}: {pairs}")

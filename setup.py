@@ -4,7 +4,7 @@ import setuptools
 
 
 MODULE_NAME = "allpairspy"
-REPOSITORY_URL = "https://github.com/thombashi/{:s}".format(MODULE_NAME)
+REPOSITORY_URL = f"https://github.com/thombashi/{MODULE_NAME:s}"
 REQUIREMENT_DIR = "requirements"
 
 pkg_info = {}
@@ -44,7 +44,10 @@ setuptools.setup(
     maintainer=pkg_info["__maintainer__"],
     maintainer_email=pkg_info["__maintainer_email__"],
     packages=setuptools.find_packages(exclude=["tests*"]),
-    project_urls={"Source": REPOSITORY_URL, "Tracker": "{:s}/issues".format(REPOSITORY_URL)},
+    project_urls={
+        "Source": REPOSITORY_URL,
+        "Tracker": f"{REPOSITORY_URL:s}/issues",
+    },
     python_requires=">=3.6",
     install_requires=install_requires,
     extras_require={"test": tests_requires},
