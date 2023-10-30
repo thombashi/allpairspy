@@ -48,4 +48,4 @@ parameters = [
 
 print("PAIRWISE:")
 for i, pairs in enumerate(AllPairs(parameters, filter_func=is_valid_combination)):
-    print("{:2d}: {}".format(i, pairs))
+    print(f"{i:2d}: {pairs}")

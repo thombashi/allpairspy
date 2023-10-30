@@ -130,7 +130,7 @@ class AllPairs:
                     continue
                 direction = 0
             else:
-                raise ValueError("next(): unknown 'direction' code '{}'".format(direction))
+                raise ValueError(f"next(): unknown 'direction' code '{direction}'")
 
             chosen_item_list[i] = self.__working_item_matrix[i][indexes[i]]
 
@@ -198,7 +198,7 @@ class AllPairs:
     def __get_working_item_matrix(self, parameter_matrix):
         return [
             [
-                Item("a{:d}v{:d}".format(param_idx, value_idx), value)
+                Item(f"a{param_idx:d}v{value_idx:d}", value)
                 for value_idx, value in enumerate(value_list)
             ]
             for param_idx, value_list in enumerate(parameter_matrix)

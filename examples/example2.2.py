@@ -9,7 +9,6 @@ from allpairspy import AllPairs
 
 
 def is_valid_combination(values, names):
-
     dictionary = dict(zip(names, values))
 
     """
@@ -56,4 +55,4 @@ pairwise = AllPairs(
 
 print("PAIRWISE:")
 for i, pairs in enumerate(pairwise):
-    print("{:2d}: {}".format(i, pairs))
+    print(f"{i:2d}: {pairs}")

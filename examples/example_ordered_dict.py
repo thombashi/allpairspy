@@ -6,9 +6,13 @@ from allpairspy import AllPairs
 
 
 parameters = OrderedDict(
-    {"brand": ["Brand X", "Brand Y"], "os": ["98", "NT", "2000", "XP"], "minute": [15, 30, 60]}
+    {
+        "brand": ["Brand X", "Brand Y"],
+        "os": ["98", "NT", "2000", "XP"],
+        "minute": [15, 30, 60],
+    }
 )
 
 print("PAIRWISE:")
 for i, pairs in enumerate(AllPairs(parameters)):
-    print("{:2d}: {}".format(i, pairs))
+    print(f"{i:2d}: {pairs}")
