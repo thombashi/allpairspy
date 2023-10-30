@@ -141,13 +141,14 @@ class AllPairs:
                 direction = 0
             i += direction
 
+            if i == len(self.__working_item_matrix):
+                self.__pairs.add_sequence(chosen_item_list)
+                if len(self.__pairs) == previous_unique_pairs_count:
+                    # could not find new unique pairs - go back to scanning
+                    direction = -1
+                    i += direction
+
         if len(self.__working_item_matrix) != len(chosen_item_list):
-            raise StopIteration()
-
-        self.__pairs.add_sequence(chosen_item_list)
-
-        if len(self.__pairs) == previous_unique_pairs_count:
-            # could not find new unique pairs - stop
             raise StopIteration()
 
         # replace returned array elements with real values and return it
@@ -180,20 +181,15 @@ class AllPairs:
                 for i in range(0, self.__n)
             ]
 
-            # weighting the node node that creates most of new pairs is the best
-            weights = [-len(new_combs[-1])]
-
-            # less used outbound connections most likely to produce more new
-            # pairs while search continues
+            # weighting the nodes
+            weights = []
             weights.extend(
-                [len(data_node.out)]
+                [-len(new_combs[-1])]  # node that creates most new pairs is the best
+                + [len(data_node.out)]  # less used outbound connections produce more new pairs
                 + [len(x) for x in reversed(new_combs[:-1])]
-                + [-data_node.counter]  # less used node is better
+                + [-len(data_node.in_)]  # prefer node with most free inbound connections
+                + [data_node.counter]  # less used node is better
             )
-
-            # otherwise we will prefer node with most of free inbound
-            # connections; somehow it works out better ;)
-            weights.append(-len(data_node.in_))
 
             item.set_weights(weights)
 
