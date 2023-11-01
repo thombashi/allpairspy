@@ -130,7 +130,7 @@ class AllPairs:
                     continue
                 direction = 0
             else:
-                raise ValueError(f"next(): unknown 'direction' code '{direction}'")
+                raise ValueError("next(): unknown 'direction' code '{}'".format(direction))
 
             chosen_item_list[i] = self.__working_item_matrix[i][indexes[i]]
 
@@ -141,13 +141,14 @@ class AllPairs:
                 direction = 0
             i += direction
 
+            if i == len(self.__working_item_matrix):
+                self.__pairs.add_sequence(chosen_item_list)
+                if len(self.__pairs) == previous_unique_pairs_count:
+                    # could not find new unique pairs - go back to scanning
+                    direction = -1
+                    i += direction
+
         if len(self.__working_item_matrix) != len(chosen_item_list):
-            raise StopIteration()
-
-        self.__pairs.add_sequence(chosen_item_list)
-
-        if len(self.__pairs) == previous_unique_pairs_count:
-            # could not find new unique pairs - stop
             raise StopIteration()
 
         # replace returned array elements with real values and return it
@@ -180,7 +181,7 @@ class AllPairs:
                 for i in range(0, self.__n)
             ]
 
-            # weighting the node node that creates most of new pairs is the best
+            # weighting the node that creates most of new pairs is the best
             weights = [-len(new_combs[-1])]
 
             # less used outbound connections most likely to produce more new
@@ -188,7 +189,7 @@ class AllPairs:
             weights.extend(
                 [len(data_node.out)]
                 + [len(x) for x in reversed(new_combs[:-1])]
-                + [-data_node.counter]  # less used node is better
+                + [data_node.counter]  # less used node is better
             )
 
             # otherwise we will prefer node with most of free inbound
@@ -202,7 +203,7 @@ class AllPairs:
     def __get_working_item_matrix(self, parameter_matrix):
         return [
             [
-                Item(f"a{param_idx:d}v{value_idx:d}", value)
+                Item("a{:d}v{:d}".format(param_idx, value_idx), value)
                 for value_idx, value in enumerate(value_list)
             ]
             for param_idx, value_list in enumerate(parameter_matrix)
